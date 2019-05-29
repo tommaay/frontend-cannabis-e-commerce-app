@@ -6,6 +6,8 @@ import {
 
 const initialState = {
     products: [],
+    categories: [],
+    types: [],
     loading: false,
     error: false,
 };
@@ -22,7 +24,9 @@ const productReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                products: action.payload,
+                products: action.products,
+                categories: action.categories,
+                types: action.types,
             };
 
         case GET_PRODUCTS_FAIL:

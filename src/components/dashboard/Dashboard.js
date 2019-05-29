@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getProducts } from '../../store/actions/productActions';
+// import Carousel from './Carousel';
 
 class Dashboard extends Component {
     componentDidMount() {
         this.props.getProducts();
     }
+
+    filterProducts = category => {
+        return this.products.filter(product => product.category === category);
+    };
 
     render() {
         return (
