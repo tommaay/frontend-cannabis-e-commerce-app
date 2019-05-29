@@ -1,4 +1,11 @@
-import { LOGIN_START, LOGIN_SUCCESS, LOGIN_FAIL } from '../actions/authActions';
+import {
+    LOGIN_START,
+    LOGIN_SUCCESS,
+    LOGIN_FAIL,
+    REGISTER_START,
+    REGISTER_SUCCESS,
+    REGISTER_FAIL,
+} from '../actions/authActions';
 
 const initialState = {
     user: null,
@@ -24,6 +31,27 @@ const authReducer = (state = initialState, action) => {
             };
 
         case LOGIN_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.error,
+            };
+
+        case REGISTER_START:
+            return {
+                ...state,
+                loading: true,
+            };
+
+        case REGISTER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                user: action.payload,
+                loggedIn: true,
+            };
+
+        case REGISTER_FAIL:
             return {
                 ...state,
                 loading: false,
