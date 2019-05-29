@@ -1,13 +1,13 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link } from './style/nav';
 
 const SignedoutLinks = () => {
     return (
         <>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/my-cart">My Cart</NavLink>
-            <NavLink to="/memberships">Memberships</NavLink>
-            <NavLink to="/login">Sign In</NavLink>
+            <Link to="/">Home</Link>
+            <Link to="/memberships">Memberships</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/my-cart">Cart</Link>
         </>
     );
 };

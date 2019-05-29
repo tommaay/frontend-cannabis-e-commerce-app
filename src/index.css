@@ -1,3 +1,4 @@
+/* CSS Rest */
 html,
 body,
 div,
@@ -97,7 +98,7 @@ section {
 }
 body {
     line-height: 1;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Work Sans', sans-serif;
 }
 blockquote,
 q {
@@ -129,7 +130,7 @@ div,
 body,
 input,
 label {
-    font-size: 1.6rem;
+    font-size: 17px;
 }
 
 p {
@@ -137,29 +138,37 @@ p {
 }
 
 h1 {
-    font-size: 3.4rem;
+    font-size: 60px;
 }
 
 h2 {
-    font-size: 3rem;
+    font-size: 30px;
 }
 
 h3 {
-    font-size: 2.6rem;
+    font-size: 24px;
 }
 
 h4 {
-    font-size: 2.2rem;
+    font-size: 22px;
 }
 
 h5 {
-    font-size: 2rem;
+    font-size: 20px;
 }
 
 h6 {
-    font-size: 1.8rem;
+    font-size: 17px;
 }
 
 a {
     text-decoration: none;
+}
+
+/* App Container */
+.App {
+    max-width: 1400px;
+    margin: 0 auto;
+    color: #505050;
+    padding: 30px;
 }

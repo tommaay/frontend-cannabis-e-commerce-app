@@ -1,21 +1,35 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getProducts } from '../../store/actions/productActions';
-// import Carousel from './Carousel';
+import Carousel from './Carousel';
 
 class Dashboard extends Component {
     componentDidMount() {
         this.props.getProducts();
     }
 
-    filterProducts = category => {
-        return this.products.filter(product => product.category === category);
+    filterProducts = id => {
+        return this.props.products.filter(
+            product => parseInt(product.category) === parseInt(id)
+        );
     };
 
     render() {
-        return (
+        return this.props.loading ? (
+            <h1>Loading...</h1>
+        ) : (
             <div>
-                <h1>This is the dashboard</h1>
+                {this.props.categories.map(category => {
+                    const id = category.id;
+                    const filteredProducts = this.filterProducts(id);
+
+                    return (
+                        <Carousel
+                            products={filteredProducts}
+                            key={category.id}
+                        />
+                    );
+                })}
             </div>
         );
     }
@@ -24,6 +38,8 @@ class Dashboard extends Component {
 const mapStateToProps = state => {
     return {
         products: state.products.products,
+        categories: state.products.categories,
+        loading: state.products.loading,
     };
 };
 

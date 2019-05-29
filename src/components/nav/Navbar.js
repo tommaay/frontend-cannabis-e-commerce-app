@@ -2,11 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 import SignedinLinks from './SignedinLinks';
 import SignedoutLinks from './SignedoutLinks';
+import { Nav } from './style/nav';
 
 const Navbar = props => {
     const navLinks = props.loggedIn ? <SignedinLinks /> : <SignedoutLinks />;
 
-    return <nav>{navLinks}</nav>;
+    return (
+        <Nav>
+            <div className="links-container">{navLinks}</div>
+        </Nav>
+    );
 };
 
 const mapStateToProps = state => {

@@ -10,9 +10,10 @@ import Navbar from './components/nav/Navbar';
 function App() {
     return (
         <Router>
+            <Navbar />
+
             <div className="App">
-                <Navbar />
-                <Dashboard />
+                <Route path="/" exact component={Dashboard} />
                 <Route path="/login" component={Login} />
                 <Route path="/register-user" component={RegisterUser} />
                 <Route path="/register-admin" component={RegisterAdmin} />

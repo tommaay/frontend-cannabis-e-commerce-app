@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
+import ProductCard from './ProductCard';
 
-const Carousel = props => {
-    return (
-        <div>
-            {props.products.map(product => {
-                <h1>{product.name}</h1>;
-            })}
-        </div>
-    );
-};
+import { CarouselContainer } from './style/carousel';
+
+class Carousel extends Component {
+    render() {
+        return (
+            <CarouselContainer>
+                {this.props.products.map(product => {
+                    return <ProductCard product={product} key={product.id} />;
+                })}
+            </CarouselContainer>
+        );
+    }
+}
 
 export default Carousel;

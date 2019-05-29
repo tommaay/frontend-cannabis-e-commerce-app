@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { logout } from '../../store/actions/authActions';
+import { Link } from './style/nav';
 
 const SignedinLinks = props => {
     return (
         <>
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/my-cart">My Cart</NavLink>
-            <NavLink to="/account">My Account</NavLink>
-            <NavLink to="/" onClick={props.logout}>
+            <Link to="/">Home</Link>
+            <Link to="/account">My Account</Link>
+            <Link to="/" onClick={props.logout}>
                 Logout
-            </NavLink>
+            </Link>
+            <Link to="/my-cart">Cart</Link>
         </>
     );
 };
