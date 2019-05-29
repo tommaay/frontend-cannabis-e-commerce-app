@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { register } from '../../store/actions/authActions';
 
-class RegisterUser extends Component {
+class RegisterAdmin extends Component {
     state = {
         firstname: '',
         lastname: '',
@@ -11,7 +11,7 @@ class RegisterUser extends Component {
         zipcode: '',
         phone: '',
         birthday: '',
-        is_admin: false,
+        is_admin: true,
     };
 
     changeHandler = e => {
@@ -96,4 +96,4 @@ class RegisterUser extends Component {
 export default connect(
     null,
     { register }
-)(RegisterUser);
+)(RegisterAdmin);

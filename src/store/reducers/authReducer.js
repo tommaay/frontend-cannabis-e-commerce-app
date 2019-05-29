@@ -5,6 +5,7 @@ import {
     REGISTER_START,
     REGISTER_SUCCESS,
     REGISTER_FAIL,
+    LOGOUT,
 } from '../actions/authActions';
 
 const initialState = {
@@ -56,6 +57,14 @@ const authReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.error,
+            };
+
+        case LOGOUT:
+            return {
+                user: null,
+                error: null,
+                loading: false,
+                loggedIn: false,
             };
 
         default:
