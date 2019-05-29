@@ -11,7 +11,6 @@ export const login = creds => dispatch => {
     axios
         .post(`https://flower-co.herokuapp.com/api/users/login`, creds)
         .then(res => {
-            console.log(res.data);
             localStorage.setItem('token', res.data.token);
 
             dispatch({ type: LOGIN_SUCCESS, payload: res.data.user });
@@ -30,7 +29,6 @@ export const register = creds => dispatch => {
     axios
         .post(`https://flower-co.herokuapp.com/api/users/register`, creds)
         .then(res => {
-            console.log(res.data);
             localStorage.setItem('token', res.data.token);
 
             dispatch({ type: REGISTER_SUCCESS, payload: res.data.user });

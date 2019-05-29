@@ -1,25 +1,18 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { logout } from '../../store/actions/authActions';
+import SignedinLinks from './SignedinLinks';
+import SignedoutLinks from './SignedoutLinks';
 
 const Navbar = props => {
-    return (
-        <nav>
-            <NavLink to="/" onClick={props.logout}>
-                Logout
-            </NavLink>
-        </nav>
-    );
+    const navLinks = props.loggedIn ? <SignedinLinks /> : <SignedoutLinks />;
+
+    return <nav>{navLinks}</nav>;
 };
 
 const mapStateToProps = state => {
     return {
-        logged: state.auth.loggedIn,
+        loggedIn: state.auth.loggedIn,
     };
 };
 
-export default connect(
-    mapStateToProps,
-    { logout }
-)(Navbar);
+export default connect(mapStateToProps)(Navbar);
