@@ -8,10 +8,8 @@ class Dashboard extends Component {
         this.props.getProducts();
     }
 
-    filterProducts = id => {
-        return this.props.products.filter(
-            product => parseInt(product.category) === parseInt(id)
-        );
+    filterProducts = name => {
+        return this.props.products.filter(product => product.category === name);
     };
 
     render() {
@@ -20,12 +18,13 @@ class Dashboard extends Component {
         ) : (
             <div>
                 {this.props.categories.map(category => {
-                    const id = category.id;
-                    const filteredProducts = this.filterProducts(id);
+                    const name = category.name;
+                    const filteredProducts = this.filterProducts(name);
 
                     return (
                         <Carousel
                             products={filteredProducts}
+                            category={category}
                             key={category.id}
                         />
                     );

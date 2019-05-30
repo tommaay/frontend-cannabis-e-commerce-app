@@ -7,9 +7,18 @@ class Carousel extends Component {
     render() {
         return (
             <CarouselContainer>
-                {this.props.products.map(product => {
-                    return <ProductCard product={product} key={product.id} />;
-                })}
+                <h2 className="category-name">{this.props.category.name}</h2>
+                <p className="category-desc">
+                    {this.props.category.description}
+                </p>
+
+                <div className="carousel">
+                    {this.props.products.map(product => {
+                        return (
+                            <ProductCard product={product} key={product.id} />
+                        );
+                    })}
+                </div>
             </CarouselContainer>
         );
     }
