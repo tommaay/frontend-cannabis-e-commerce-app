@@ -5,9 +5,8 @@ export const Card = styled.div`
     width: 250px;
     height: 460px;
     box-shadow: 0px 0px 10px -2px gray;
-    margin: 0 20px;
+    margin: 5px 18px;
     text-align: center;
-    flex: 0 0 auto;
 
     .image {
         background: rgb(236, 233, 228);
@@ -56,6 +55,10 @@ export const Card = styled.div`
 
             h6 {
                 margin: 0 15px;
+            }
+
+            i {
+                cursor: pointer;
             }
 
             .fa-minus-circle {

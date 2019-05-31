@@ -9,15 +9,19 @@ class Dashboard extends Component {
     }
 
     filterProducts = name => {
-        return this.props.products.filter(product => product.category === name);
+        return this.props.products.filter(
+            product => product.category.name === name
+        );
     };
 
     render() {
-        return this.props.loading ? (
+        const { products, categories, loading } = this.props;
+
+        return loading ? (
             <h1>Loading...</h1>
         ) : (
             <div>
-                {this.props.categories.map(category => {
+                {categories.map(category => {
                     const name = category.name;
                     const filteredProducts = this.filterProducts(name);
 

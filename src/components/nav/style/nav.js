@@ -21,4 +21,25 @@ export const Link = styled(NavLink)`
     margin-right: 30px;
     font-weight: 300;
     letter-spacing: 1px;
+    font-size: 18px;
+`;
+
+export const CategoryBar = styled.div`
+    background: ${colors.third};
+    padding: 10px 25px;
+    margin-bottom: 25px;
+
+    .links-container {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        max-width: 1200px;
+
+        ${Link} {
+            margin: 5px 15px;
+            font-size: 16px;
+        }
+    }
 `;

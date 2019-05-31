@@ -12,16 +12,13 @@ export const CarouselContainer = styled.div`
     }
 
     .carousel {
-        /* display: flex;
-        justify-content: space-evenly;
-        overflow-x: none;
-        white-space: nowrap; */
-        overflow-y: hidden;
         display: flex;
-        flex-wrap: nowrap;
         overflow-x: auto;
-        align-items: center;
         margin-bottom: 30px;
         padding: 15px 0;
+
+        &::-webkit-scrollbar {
+            /* display: none; */
+        }
     }
 `;
