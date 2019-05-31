@@ -1,42 +1,30 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
-import { getProducts } from '../../store/actions/productActions';
+import { getAllByCategory } from '../../store/actions/productActions';
 import Carousel from './Carousel';
 
-class Dashboard extends Component {
-    componentDidMount() {
-        this.props.getProducts();
-    }
+const Dashboard = props => {
+    const { products, categories, loading, getAllByCategory } = props;
 
-    filterProducts = name => {
-        return this.props.products.filter(
-            product => product.category.name === name
-        );
-    };
+    return loading ? (
+        <h1>Loading...</h1>
+    ) : (
+        <div>
+            {categories.map(category => {
+                const name = category.name;
+                const filteredProducts = getAllByCategory(products, name);
 
-    render() {
-        const { products, categories, loading } = this.props;
-
-        return loading ? (
-            <h1>Loading...</h1>
-        ) : (
-            <div>
-                {categories.map(category => {
-                    const name = category.name;
-                    const filteredProducts = this.filterProducts(name);
-
-                    return (
-                        <Carousel
-                            products={filteredProducts}
-                            category={category}
-                            key={category.id}
-                        />
-                    );
-                })}
-            </div>
-        );
-    }
-}
+                return (
+                    <Carousel
+                        products={filteredProducts}
+                        category={category}
+                        key={category.id}
+                    />
+                );
+            })}
+        </div>
+    );
+};
 
 const mapStateToProps = state => {
     return {
@@ -48,5 +36,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { getProducts }
+    { getAllByCategory }
 )(Dashboard);

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ProductPageContainer = styled.div`
+export const ProductsContainer = styled.div`
     .title {
         font-weight: 600;
         margin-bottom: 15px;
