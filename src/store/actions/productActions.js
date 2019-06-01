@@ -43,7 +43,7 @@ export const getProducts = () => async dispatch => {
 
 // Filter products by category through url params
 export const getAllByCategoryParams = (products, category) => dispatch => {
-    dispatch({ type: GET_ALL_BY_CATEGORY_START });
+    dispatch({ type: GET_ALL_BY_CATEGORY_PARAMS_START });
 
     const productsByCategory = products.filter(
         product =>
@@ -54,14 +54,16 @@ export const getAllByCategoryParams = (products, category) => dispatch => {
     );
 
     dispatch({
-        type: GET_ALL_BY_CATEGORY_SUCCESS,
+        type: GET_ALL_BY_CATEGORY_PARAMS_SUCCESS,
         category: category,
     });
 
-    dispatch({
-        type: GET_PRODUCTS_FAIL,
-        error: 'Error getting prducts by category',
-    });
+    if (!productsByCategory) {
+        dispatch({
+            type: GET_ALL_BY_CATEGORY_PARAMS_FAIL,
+            error: 'Error getting prducts by category',
+        });
+    }
 
     return productsByCategory;
 };
@@ -79,10 +81,12 @@ export const getAllByCategory = (products, category) => dispatch => {
         category: category,
     });
 
-    dispatch({
-        type: GET_PRODUCTS_FAIL,
-        error: 'Error getting prducts by category',
-    });
+    if (!productsByCategory) {
+        dispatch({
+            type: GET_ALL_BY_CATEGORY_FAIL,
+            error: 'Error getting prducts by category',
+        });
+    }
 
     return productsByCategory;
 };
@@ -96,7 +100,6 @@ export const getProductById = id => async dispatch => {
         );
         const product = await res.data;
 
-        console.log('action', product);
         dispatch({ type: GET_PRODUCT_BY_ID_SUCCESS });
 
         return product;

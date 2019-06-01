@@ -1,14 +1,16 @@
 import React from 'react';
-import { Card } from './style/productCard';
+import { Card, ImgLink } from './style/productCard';
+import { formatPrice } from '../../helpers/helpers';
 
 const ProductCard = props => {
     const { product } = props;
+    const id = product.id;
 
     return (
         <Card className="product-card">
-            <div className="image">
+            <ImgLink to={`/products/${id}`} className="image">
                 <img src={product.image} alt={product.name} />
-            </div>
+            </ImgLink>
 
             <div className="card-details">
                 <h5 className="product">{product.name}</h5>
@@ -18,7 +20,7 @@ const ProductCard = props => {
                         <div key={spec.id}>
                             <div className="spec-container">
                                 <h6>{spec.size}</h6>
-                                <h6>{spec.price}</h6>
+                                <h6>{formatPrice(spec.price)}</h6>
                             </div>
 
                             <div className="add-to-cart">

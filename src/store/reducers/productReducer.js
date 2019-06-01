@@ -46,6 +46,26 @@ const productReducer = (state = initialState, action) => {
                 error: action.error,
             };
 
+        case GET_ALL_BY_CATEGORY_PARAMS_START:
+            return {
+                ...state,
+                loading: true,
+            };
+
+        case GET_ALL_BY_CATEGORY_PARAMS_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                category: action.category,
+            };
+
+        case GET_ALL_BY_CATEGORY_PARAMS_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.error,
+            };
+
         case GET_ALL_BY_CATEGORY_START:
             return {
                 ...state,
