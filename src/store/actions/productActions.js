@@ -4,6 +4,13 @@ export const GET_PRODUCTS_START = 'GET_PRODUCTS_START';
 export const GET_PRODUCTS_SUCCESS = 'GET_PRODUCTS_SUCCESS';
 export const GET_PRODUCTS_FAIL = 'GET_PRODUCTS_FAIL';
 
+export const GET_ALL_BY_CATEGORY_PARAMS_START =
+    'GET_ALL_BY_CATEGORY_PARAMS_START';
+export const GET_ALL_BY_CATEGORY_PARAMS_SUCCESS =
+    'GET_ALL_BY_CATEGORY_PARAMS_SUCCESS';
+export const GET_ALL_BY_CATEGORY_PARAMS_FAIL =
+    'GET_ALL_BY_CATEGORY_PARAMS_FAIL';
+
 export const GET_ALL_BY_CATEGORY_START = 'GET_ALL_BY_CATEGORY_START';
 export const GET_ALL_BY_CATEGORY_SUCCESS = 'GET_ALL_BY_CATEGORY_SUCCESS';
 export const GET_ALL_BY_CATEGORY_FAIL = 'GET_ALL_BY_CATEGORY_FAIL';
@@ -30,8 +37,8 @@ export const getProducts = () => async dispatch => {
     }
 };
 
-// Filter products by category
-export const getAllByCategory = (products, category) => dispatch => {
+// Filter products by category through url params
+export const getAllByCategoryParams = (products, category) => dispatch => {
     dispatch({ type: GET_ALL_BY_CATEGORY_START });
 
     const productsByCategory = products.filter(
@@ -40,6 +47,27 @@ export const getAllByCategory = (products, category) => dispatch => {
                 .toLowerCase()
                 .split(' ')
                 .join('-') === category
+    );
+
+    dispatch({
+        type: GET_ALL_BY_CATEGORY_SUCCESS,
+        category: category,
+    });
+
+    dispatch({
+        type: GET_PRODUCTS_FAIL,
+        error: 'Error getting prducts by category',
+    });
+
+    return productsByCategory;
+};
+
+// Filter products by category through url params
+export const getAllByCategory = (products, category) => dispatch => {
+    dispatch({ type: GET_ALL_BY_CATEGORY_START });
+
+    const productsByCategory = products.filter(
+        product => product.category.name === category
     );
 
     dispatch({

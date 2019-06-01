@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getAllByCategory } from '../../store/actions/productActions';
+import { getAllByCategoryParams } from '../../store/actions/productActions';
 import ProductCard from '../dashboard/ProductCard';
 import { ProductsContainer } from './style/products';
 
@@ -8,19 +8,19 @@ const ProductsByCategory = props => {
     if (props.products.length === 0) {
         return <h1>Loading...</h1>;
     } else {
-        const { products, getAllByCategory } = props;
+        const { products, getAllByCategoryParams } = props;
         const category = props.match.params.product;
-        const productsByCategory = getAllByCategory(products, category);
+        const filteredProducts = getAllByCategoryParams(products, category);
 
         return (
             <ProductsContainer>
-                <h1 className="title">{productsByCategory[0].category.name}</h1>
+                <h1 className="title">{filteredProducts[0].category.name}</h1>
                 <h6 className="description">
-                    {productsByCategory[0].category.description}
+                    {filteredProducts[0].category.description}
                 </h6>
 
                 <div className="products-container">
-                    {productsByCategory.map(product => (
+                    {filteredProducts.map(product => (
                         <ProductCard product={product} key={product.id} />
                     ))}
                 </div>
@@ -37,5 +37,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { getAllByCategory }
+    { getAllByCategoryParams }
 )(ProductsByCategory);
