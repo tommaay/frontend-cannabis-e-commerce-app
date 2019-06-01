@@ -8,6 +8,9 @@ import {
     GET_ALL_BY_CATEGORY_START,
     GET_ALL_BY_CATEGORY_SUCCESS,
     GET_ALL_BY_CATEGORY_FAIL,
+    GET_PRODUCT_BY_ID_START,
+    GET_PRODUCT_BY_ID_SUCCESS,
+    GET_PRODUCT_BY_ID_FAIL,
 } from '../actions/productActions';
 
 const initialState = {
@@ -57,6 +60,25 @@ const productReducer = (state = initialState, action) => {
             };
 
         case GET_ALL_BY_CATEGORY_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.error,
+            };
+
+        case GET_PRODUCT_BY_ID_START:
+            return {
+                ...state,
+                loading: true,
+            };
+
+        case GET_PRODUCT_BY_ID_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+            };
+
+        case GET_PRODUCT_BY_ID_FAIL:
             return {
                 ...state,
                 loading: false,

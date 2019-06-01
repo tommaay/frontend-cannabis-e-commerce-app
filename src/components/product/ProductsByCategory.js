@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getAllByCategoryParams } from '../../store/actions/productActions';
-import ProductCard from '../dashboard/ProductCard';
+import ProductCard from './ProductCard';
 import { ProductsContainer } from './style/products';
 
 const ProductsByCategory = props => {
@@ -9,7 +9,7 @@ const ProductsByCategory = props => {
         return <h1>Loading...</h1>;
     } else {
         const { products, getAllByCategoryParams } = props;
-        const category = props.match.params.product;
+        const category = props.match.params.category;
         const filteredProducts = getAllByCategoryParams(products, category);
 
         return (

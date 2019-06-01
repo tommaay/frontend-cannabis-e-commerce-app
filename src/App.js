@@ -10,6 +10,7 @@ import RegisterAdmin from './components/auth/RegisterAdmin';
 import Navbar from './components/nav/Navbar';
 import CategoryNav from './components/nav/CategoryNav';
 import ProductsByCategory from './components/product/ProductsByCategory';
+import ProductPage from './components/product/ProductPage';
 
 class App extends Component {
     componentDidMount() {
@@ -23,13 +24,19 @@ class App extends Component {
                 <CategoryNav />
 
                 <div className="App">
-                    <Route path="/" exact component={Dashboard} />
+                    <Route exact path="/" component={Dashboard} />
                     <Route path="/login" component={Login} />
                     <Route path="/register-user" component={RegisterUser} />
                     <Route path="/register-admin" component={RegisterAdmin} />
                     <Route
-                        path="/products/:product"
+                        exact
+                        path="/products/category/:category"
                         component={ProductsByCategory}
+                    />
+                    <Route
+                        exact
+                        path="/products/:productId"
+                        component={ProductPage}
                     />
                 </div>
             </Router>

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProductCard from './ProductCard';
+import ProductCard from '../product/ProductCard';
 
 import { CarouselContainer } from './style/carousel';
 
