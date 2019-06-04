@@ -29,10 +29,6 @@ const AddItemContainer = styled.div`
 const AddItemsModule = props => {
     const { addToCart, removeFromCart, itemsInCart, product, spec } = props;
 
-    console.log(itemsInCart[spec.id]);
-    console.log(product);
-    console.log(spec);
-
     return (
         <AddItemContainer>
             <i

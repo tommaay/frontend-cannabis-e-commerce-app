@@ -58,6 +58,10 @@ export const CartPageContainer = styled.div`
                 margin-right: 20px;
             }
         }
+
+        .fas {
+            cursor: pointer;
+        }
     }
 `;
 

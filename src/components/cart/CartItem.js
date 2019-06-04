@@ -3,7 +3,7 @@ import AddItemModule from './AddItemsModule';
 import { formatPrice } from '../../helpers/helpers';
 
 const CartItem = props => {
-    const { item, itemsInCart } = props;
+    const { item, itemsInCart, removeProductFromCart } = props;
 
     return (
         <div className="cart-item">
@@ -19,7 +19,11 @@ const CartItem = props => {
             <div className="price">
                 <h6>{formatPrice(item.specs.price)}</h6>
 
-                <AddItemModule product={item} spec={item.specs} />
+                <AddItemModule
+                    product={item}
+                    spec={item.specs}
+                    count={itemsInCart[`${item.specs.id}`]}
+                />
             </div>
 
             <div className="subtotal">
@@ -28,7 +32,10 @@ const CartItem = props => {
                 </h5>
             </div>
 
-            <i className="fas fa-times" />
+            <i
+                className="fas fa-times"
+                onClick={() => removeProductFromCart(2)}
+            />
         </div>
     );
 };

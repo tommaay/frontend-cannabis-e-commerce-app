@@ -4,7 +4,10 @@ import CartItem from './CartItem';
 import CartTotal from './CartTotal';
 
 import { CartPageContainer } from './style/style.CartPage';
-import { clearCart } from '../../store/actions/cartActions';
+import {
+    clearCart,
+    removeProductFromCart,
+} from '../../store/actions/cartActions';
 import { Button } from '../../styles/buttons';
 
 const CartPage = props => {
@@ -26,6 +29,7 @@ const CartPage = props => {
                         <CartItem
                             item={item}
                             itemsInCart={itemsInCart}
+                            removeProductFromCart={removeProductFromCart}
                             key={item.specs.id}
                         />
                     );
@@ -48,5 +52,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { clearCart }
+    { clearCart, removeProductFromCart }
 )(CartPage);
