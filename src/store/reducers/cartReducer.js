@@ -7,9 +7,9 @@ import {
     REMOVE_FROM_CART_FAIL,
     CLEAR_CART_START,
     CLEAR_CART_SUCCESS,
-    REMOVE_PRODUCT_FROM_CART_START,
-    REMOVE_PRODUCT_FROM_CART_SUCCESS,
-    REMOVE_PRODUCT_FROM_CART_FAIL,
+    REMOVE_PRODUCT_START,
+    REMOVE_PRODUCT_SUCCESS,
+    REMOVE_PRODUCT_FAIL,
 } from '../actions/cartActions';
 
 const initialState = {
@@ -101,28 +101,29 @@ const cartReducer = (state = initialState, action) => {
             };
 
         // Remove entire quantity of item from cart
-        // case REMOVE_PRODUCT_FROM_CART_START:
-        //     return {
-        //         ...state,
-        //         loading: true,
-        //     };
-        // case REMOVE_PRODUCT_FROM_CART_SUCCESS:
-        //     delete state.itemsInCart[action.id];
+        case REMOVE_PRODUCT_START:
+            return {
+                ...state,
+                loading: true,
+            };
+        case REMOVE_PRODUCT_SUCCESS:
+            delete state.itemsInCart[action.id];
+            console.log('REMOVE_PRODUCT_SUCCESS', action.id);
 
-        //     return {
-        //         ...state,
-        //         loading: false,
-        //         cartItems: state.cartItems.filter(
-        //             item => item.specs.id !== action.id
-        //         ),
-        //         itemsInCart: state.itemsInCart,
-        //     };
-        // case REMOVE_PRODUCT_FROM_CART_FAIL:
-        //     return {
-        //         ...state,
-        //         loading: false,
-        //         error: 'There was an error processing your request',
-        //     };
+            return {
+                ...state,
+                loading: false,
+                cartItems: state.cartItems.filter(
+                    item => item.specs.id !== action.id
+                ),
+                itemsInCart: state.itemsInCart,
+            };
+        case REMOVE_PRODUCT_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: 'There was an error processing your request',
+            };
 
         // Clear entire cart
         case CLEAR_CART_START:

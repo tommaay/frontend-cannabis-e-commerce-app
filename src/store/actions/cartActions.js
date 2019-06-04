@@ -8,10 +8,9 @@ export const REMOVE_FROM_CART_START = 'REMOVE_FROM_CART_START';
 export const REMOVE_FROM_CART_SUCCESS = 'REMOVE_FROM_CART_SUCCESS';
 export const REMOVE_FROM_CART_FAIL = 'REMOVE_FROM_CART_FAIL';
 
-export const REMOVE_PRODUCT_FROM_CART_START = 'REMOVE_PRODUCT_FROM_CART_START';
-export const REMOVE_PRODUCT_FROM_CART_SUCCESS =
-    'REMOVE_PRODUCT_FROM_CART_SUCCESS';
-export const REMOVE_PRODUCT_FROM_CART_FAIL = 'REMOVE_PRODUCT_FROM_CART_FAIL';
+export const REMOVE_PRODUCT_START = 'REMOVE_PRODUCT_START';
+export const REMOVE_PRODUCT_SUCCESS = 'REMOVE_PRODUCT_SUCCESS';
+export const REMOVE_PRODUCT_FAIL = 'REMOVE_PRODUCT_FAIL';
 
 export const CLEAR_CART_START = 'CLEAR_CART_START';
 export const CLEAR_CART_SUCCESS = 'CLEAR_CART_SUCCESS';
@@ -39,16 +38,14 @@ export const removeFromCart = spec => dispatch => {
     }
 };
 
-export const removeProductFromCart = specId => dispatch => {
-    // dispatch({ type: REMOVE_PRODUCT_FROM_CART_START });
+export const removeProduct = id => dispatch => {
+    dispatch({ type: REMOVE_PRODUCT_START });
 
-    console.log('specId', specId);
+    dispatch({ type: REMOVE_PRODUCT_SUCCESS, id: id });
 
-    // dispatch({ type: REMOVE_PRODUCT_FROM_CART_SUCCESS, id: specId });
-
-    // if (!specId) {
-    //     dispatch({ type: REMOVE_PRODUCT_FROM_CART_FAIL });
-    // }
+    if (!id) {
+        dispatch({ type: REMOVE_PRODUCT_FAIL });
+    }
 };
 
 export const clearCart = () => dispatch => {

@@ -1,9 +1,11 @@
 import React from 'react';
 import AddItemModule from './AddItemsModule';
 import { formatPrice } from '../../helpers/helpers';
+import { connect } from 'react-redux';
+import { removeProduct } from '../../store/actions/cartActions';
 
 const CartItem = props => {
-    const { item, itemsInCart, removeProductFromCart } = props;
+    const { item, itemsInCart, removeProduct } = props;
 
     return (
         <div className="cart-item">
@@ -32,12 +34,16 @@ const CartItem = props => {
                 </h5>
             </div>
 
+            {/* <button >clear</button> */}
             <i
                 className="fas fa-times"
-                onClick={() => removeProductFromCart(2)}
+                onClick={() => removeProduct(item.specs.id)}
             />
         </div>
     );
 };
 
-export default CartItem;
+export default connect(
+    null,
+    { removeProduct }
+)(CartItem);
