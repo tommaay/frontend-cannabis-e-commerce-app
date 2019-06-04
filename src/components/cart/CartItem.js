@@ -21,11 +21,7 @@ const CartItem = props => {
             <div className="price">
                 <h6>{formatPrice(item.specs.price)}</h6>
 
-                <AddItemModule
-                    product={item}
-                    spec={item.specs}
-                    count={itemsInCart[`${item.specs.id}`]}
-                />
+                <AddItemModule product={item} spec={item.specs} />
             </div>
 
             <div className="subtotal">
@@ -34,7 +30,6 @@ const CartItem = props => {
                 </h5>
             </div>
 
-            {/* <button >clear</button> */}
             <i
                 className="fas fa-times"
                 onClick={() => removeProduct(item.specs.id)}

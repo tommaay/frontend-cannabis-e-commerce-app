@@ -11,13 +11,6 @@ export const CartPageContainer = styled.div`
         align-items: flex-end;
         padding-bottom: 30px;
         border-bottom: 2px solid lightgray;
-
-        ${Button} {
-            padding: 8px 10px;
-            background: crimson;
-            color: white;
-            font-size: 14px;
-        }
     }
 
     .cart-item {

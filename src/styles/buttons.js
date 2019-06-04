@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors, text } from './colors';
+import { colors } from './colors';
 
 export const Button = styled.button`
     padding: 15px 30px;
@@ -10,4 +10,18 @@ export const Button = styled.button`
     border-radius: 50px;
     letter-spacing: 2px;
     cursor: pointer;
+`;
+
+export const ClearBtn = styled(Button)`
+    padding: 6px 10px;
+    background: crimson;
+    font-size: 14px;
+`;
+
+export const CheckoutBtn = styled(Button)`
+    background: ${colors.second};
+`;
+
+export const LogintBtn = styled(Button)`
+    background: ${colors.main};
 `;

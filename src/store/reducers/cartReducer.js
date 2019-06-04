@@ -16,6 +16,7 @@ const initialState = {
     cartItems: [],
     itemsInCart: {},
     subTotal: 0,
+    tax: 0,
     loading: false,
     error: false,
 };
@@ -40,6 +41,7 @@ const cartReducer = (state = initialState, action) => {
                     loading: false,
                     cartItems: [...state.cartItems, action.product],
                     subTotal: state.subTotal + action.product.specs.price,
+                    tax: (state.subTotal + action.product.specs.price) * 0.3,
                 };
             } else {
                 state.itemsInCart[action.product.specs.id] =
@@ -57,6 +59,7 @@ const cartReducer = (state = initialState, action) => {
                         return item;
                     }),
                     subTotal: state.subTotal + action.product.specs.price,
+                    tax: (state.subTotal + action.product.specs.price) * 0.3,
                 };
             }
         case ADD_TO_CART_FAIL:
@@ -73,6 +76,7 @@ const cartReducer = (state = initialState, action) => {
                 loading: true,
             };
         case REMOVE_FROM_CART_SUCCESS:
+            // If there is more than 1 of this product in the cart
             if (state.itemsInCart[action.spec.id] > 1) {
                 state.itemsInCart[action.spec.id] -= 1;
 
@@ -80,7 +84,9 @@ const cartReducer = (state = initialState, action) => {
                     ...state,
                     loading: false,
                     subTotal: state.subTotal - action.spec.price,
+                    tax: (state.subTotal - action.spec.price) * 0.3,
                 };
+                // If there is only 1 of this product left in the cart
             } else {
                 delete state.itemsInCart[action.spec.id];
 
@@ -91,6 +97,7 @@ const cartReducer = (state = initialState, action) => {
                     ),
                     loading: false,
                     subTotal: state.subTotal - action.spec.price,
+                    tax: (state.subTotal - action.spec.price) * 0.3,
                 };
             }
         case REMOVE_FROM_CART_FAIL:
@@ -108,7 +115,11 @@ const cartReducer = (state = initialState, action) => {
             };
         case REMOVE_PRODUCT_SUCCESS:
             delete state.itemsInCart[action.id];
-            console.log('REMOVE_PRODUCT_SUCCESS', action.id);
+            const product = state.cartItems.filter(
+                item => item.specs.id === action.id
+            )[0];
+
+            const amount = product.specs.price * product.quantity;
 
             return {
                 ...state,
@@ -117,6 +128,8 @@ const cartReducer = (state = initialState, action) => {
                     item => item.specs.id !== action.id
                 ),
                 itemsInCart: state.itemsInCart,
+                subTotal: state.subTotal - amount,
+                tax: (state.subTotal - amount) * 0.3,
             };
         case REMOVE_PRODUCT_FAIL:
             return {
@@ -136,6 +149,7 @@ const cartReducer = (state = initialState, action) => {
                 cartItems: [],
                 itemsInCart: {},
                 subTotal: 0,
+                tax: 0,
                 loading: false,
                 error: false,
             };

@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 import { formatPrice } from '../../helpers/helpers';
 import { TotalContainer } from './style/style.CartPage';
-import { Button } from '../../styles/buttons';
+import { CheckoutBtn, LogintBtn } from '../../styles/buttons';
 
 const CartTotal = props => {
-    const { cartItems, itemsInCart, subTotal, loggedIn } = props;
+    const { cartItems, itemsInCart, subTotal, tax, loggedIn } = props;
 
     return (
         <TotalContainer>
@@ -20,7 +20,7 @@ const CartTotal = props => {
 
                 <div className="row">
                     <h5>Tax (30%)</h5>
-                    <h5>{formatPrice(subTotal * 0.3)}</h5>
+                    <h5>{formatPrice(tax)}</h5>
                 </div>
 
                 <div className="row">
@@ -35,11 +35,12 @@ const CartTotal = props => {
                 </div>
 
                 <div className="row-right">
-                    {loggedIn ? (
-                        <Button>Checkout</Button>
+                    {/* {loggedIn ? (
+                        <CheckoutBtn>Checkout</CheckoutBtn>
                     ) : (
-                        <Button>Login</Button>
-                    )}
+                        <LogintBtn>Login</LogintBtn>
+                    )} */}
+                    <CheckoutBtn>Checkout</CheckoutBtn>
                 </div>
             </div>
         </TotalContainer>
@@ -51,6 +52,7 @@ const mapStateToProps = state => {
         cartItems: state.cart.cartItems,
         itemsInCart: state.cart.itemsInCart,
         subTotal: state.cart.subTotal,
+        tax: state.cart.tax,
         loggedIn: state.auth.loggedIn,
     };
 };
