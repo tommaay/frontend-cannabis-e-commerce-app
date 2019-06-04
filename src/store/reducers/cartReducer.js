@@ -142,7 +142,10 @@ const cartReducer = (state = initialState, action) => {
                 ),
                 itemsInCart: state.itemsInCart,
                 subtotal: state.subtotal - amount,
-                tax: (state.subtotal + state.delivery - amount) * 0.3,
+                tax:
+                    state.subtotal - amount !== 0
+                        ? (state.subtotal + state.delivery - amount) * 0.3
+                        : 0,
             };
         case REMOVE_PRODUCT_FAIL:
             return {
