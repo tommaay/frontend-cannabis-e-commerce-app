@@ -102,6 +102,7 @@ const cartReducer = (state = initialState, action) => {
             return {
                 cartItems: [],
                 itemsInCart: {},
+                subTotal: 0,
                 loading: false,
                 error: false,
             };

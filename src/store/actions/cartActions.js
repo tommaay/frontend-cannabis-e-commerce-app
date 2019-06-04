@@ -17,8 +17,6 @@ export const addToCart = (productInfo, spec) => dispatch => {
     const product = { ...productInfo };
     product.specs = spec;
 
-    console.log('product.specs', product.specs);
-
     dispatch({ type: ADD_TO_CART_SUCCESS, product: product });
 
     if (!product) {

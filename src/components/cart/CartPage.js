@@ -5,6 +5,7 @@ import CartTotal from './CartTotal';
 
 import { CartPageContainer } from './style/style.CartPage';
 import { clearCart } from '../../store/actions/cartActions';
+import { Button } from '../../styles/buttons';
 
 const CartPage = props => {
     const { cartItems, itemsInCart, clearCart, subTotal } = props;
@@ -14,7 +15,9 @@ const CartPage = props => {
             <div className="header">
                 <h1>Shopping Cart</h1>
 
-                <button onClick={clearCart}>Clear Cart</button>
+                <Button onClick={clearCart} className="clear-btn">
+                    Clear
+                </Button>
             </div>
 
             <>
@@ -29,11 +32,7 @@ const CartPage = props => {
                 })}
             </>
 
-            <CartTotal
-                cartItems={cartItems}
-                itemsInCart={itemsInCart}
-                subTotal={subTotal}
-            />
+            <CartTotal />
         </CartPageContainer>
     );
 };

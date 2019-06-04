@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors, text } from '../../../styles/colors';
+import { Button } from '../../../styles/buttons';
 
 export const CartPageContainer = styled.div`
     font-weight: 500;
@@ -11,16 +12,11 @@ export const CartPageContainer = styled.div`
         padding-bottom: 30px;
         border-bottom: 2px solid lightgray;
 
-        button {
-            height: 35px;
-            padding: 2px 15px;
-            background: ${colors.second};
+        ${Button} {
+            padding: 8px 10px;
+            background: crimson;
             color: white;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            letter-spacing: 2px;
-            cursor: pointer;
+            font-size: 14px;
         }
     }
 
@@ -62,5 +58,36 @@ export const CartPageContainer = styled.div`
                 margin-right: 20px;
             }
         }
+    }
+`;
+
+export const TotalContainer = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+
+    .total-box {
+        width: 35%;
+    }
+
+    .row {
+        display: flex;
+        justify-content: space-between;
+        margin: 10px 0;
+    }
+
+    .total {
+        margin-top: 15px;
+        border-top: 2px solid lightgray;
+        border-bottom: 2px solid lightgray;
+        padding: 15px 0;
+        text-align: right;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+    }
+
+    .row-right {
+        text-align: right;
+        padding: 15px 0;
     }
 `;
