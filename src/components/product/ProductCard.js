@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, ImgLink } from './style/productCard';
 import { formatPrice } from '../../helpers/helpers';
+import AddItemsModule from '../cart/AddItemsModule';
 
 const ProductCard = props => {
     const { product } = props;
@@ -23,11 +24,7 @@ const ProductCard = props => {
                                 <h6>{formatPrice(spec.price)}</h6>
                             </div>
 
-                            <div className="add-to-cart">
-                                <i className="fas fa-minus-circle" />
-                                <h6>0</h6>
-                                <i className="fas fa-plus-circle" />
-                            </div>
+                            <AddItemsModule product={product} spec={spec} />
                         </div>
                     );
                 })}

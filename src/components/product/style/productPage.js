@@ -38,7 +38,7 @@ export const PageContainer = styled.div`
             button {
                 padding: 7px 20px;
                 background: ${colors.third};
-                border-radius: 15px;
+                border-radius: 40px;
                 border: 0;
                 color: white;
                 font-size: 16px;
@@ -64,16 +64,17 @@ export const PageContainer = styled.div`
             display: flex;
             justify-content: space-between;
             align-items: center;
+            width: 70%;
             margin-bottom: 40px;
-            width: 100%;
-            padding: 15px 20px;
-            box-shadow: 0 0 10px -4px gray;
+            padding: 15px 30px;
+            border: 1px solid ${colors.third};
+            border-radius: 40px;
 
             .price {
                 display: flex;
 
                 p {
-                    margin-right: 40px;
+                    margin-right: 20px;
                 }
             }
 

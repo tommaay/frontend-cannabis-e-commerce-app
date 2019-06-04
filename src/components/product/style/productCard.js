@@ -46,28 +46,7 @@ export const Card = styled.div`
 
             h6 {
                 margin: 5px 10px;
-            }
-        }
-
-        .add-to-cart {
-            display: flex;
-            justify-content: center;
-            margin-top: -8px;
-
-            h6 {
-                margin: 0 15px;
-            }
-
-            i {
-                cursor: pointer;
-            }
-
-            .fa-minus-circle {
-                color: ${text.light};
-            }
-
-            .fa-plus-circle {
-                color: ${colors.main};
+                margin-bottom: -8px;
             }
         }
     }

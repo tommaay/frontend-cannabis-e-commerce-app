@@ -11,7 +11,7 @@ const SignedinLinks = props => {
             <Link to="/" onClick={props.logout}>
                 Logout
             </Link>
-            <Link to="/my-cart">Cart</Link>
+            <Link to="/cart">Cart</Link>
         </>
     );
 };

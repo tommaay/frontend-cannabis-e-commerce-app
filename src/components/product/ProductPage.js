@@ -1,17 +1,17 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import AddItemModule from '../cart/AddItemsModule';
 import { PageContainer } from './style/productPage';
 import { formatPrice } from '../../helpers/helpers';
 
 const ProductPage = props => {
-    const { products, getProductById } = props;
+    const { products } = props;
     const id = parseInt(props.match.params.productId);
 
     if (products.length === 0) {
         return <h1>Loading...</h1>;
     } else {
         const product = products.filter(product => product.id === id)[0];
-        console.log(product);
 
         return (
             <PageContainer>
@@ -46,11 +46,7 @@ const ProductPage = props => {
                                 <p>{formatPrice(spec.price)}</p>
                             </div>
 
-                            <div className="add-to-cart">
-                                <i className="fas fa-minus-circle" />
-                                <h6>0</h6>
-                                <i className="fas fa-plus-circle" />
-                            </div>
+                            <AddItemModule product={product} spec={spec} />
                         </div>
                     ))}
 
