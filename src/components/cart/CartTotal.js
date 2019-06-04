@@ -29,7 +29,7 @@ const CartTotal = props => {
                 </div>
 
                 <div className="total">
-                    <h3>Total: {formatPrice(subtotal + tax)}</h3>
+                    <h3>Total: {formatPrice(subtotal + delivery + tax)}</h3>
                 </div>
 
                 <div className="row-right">

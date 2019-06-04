@@ -17,6 +17,7 @@ const initialState = {
     itemsInCart: {},
     subtotal: 0,
     tax: 0,
+    taxRate: 0.3,
     delivery: 1000,
     loading: false,
     error: false,
@@ -46,7 +47,7 @@ const cartReducer = (state = initialState, action) => {
                         (state.subtotal +
                             state.delivery +
                             action.product.specs.price) *
-                        0.3,
+                        state.taxRate,
                 };
             } else {
                 state.itemsInCart[action.product.specs.id] =
@@ -68,7 +69,7 @@ const cartReducer = (state = initialState, action) => {
                         (state.subtotal +
                             state.delivery +
                             action.product.specs.price) *
-                        0.3,
+                        state.taxRate,
                 };
             }
         case ADD_TO_CART_FAIL:
@@ -95,7 +96,7 @@ const cartReducer = (state = initialState, action) => {
                     subtotal: state.subtotal - action.spec.price,
                     tax:
                         (state.subtotal + state.delivery - action.spec.price) *
-                        0.3,
+                        state.taxRate,
                 };
                 // If there is only 1 of this product left in the cart
             } else {
@@ -110,7 +111,7 @@ const cartReducer = (state = initialState, action) => {
                     subtotal: state.subtotal - action.spec.price,
                     tax:
                         (state.subtotal + state.delivery - action.spec.price) *
-                        0.3,
+                        state.taxRate,
                 };
             }
         case REMOVE_FROM_CART_FAIL:
@@ -144,7 +145,8 @@ const cartReducer = (state = initialState, action) => {
                 subtotal: state.subtotal - amount,
                 tax:
                     state.subtotal - amount !== 0
-                        ? (state.subtotal + state.delivery - amount) * 0.3
+                        ? (state.subtotal + state.delivery - amount) *
+                          state.taxRate
                         : 0,
             };
         case REMOVE_PRODUCT_FAIL:

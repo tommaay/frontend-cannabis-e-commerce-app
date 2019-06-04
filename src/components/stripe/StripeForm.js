@@ -38,7 +38,6 @@ class StripeForm extends Component {
         });
 
         const cartInfo = {
-            cartItems,
             user_id: userId,
             subtotal,
             tax,
@@ -46,7 +45,7 @@ class StripeForm extends Component {
             total: subtotal + tax,
         };
 
-        console.log(token, cartInfo);
+        console.log(token, cartInfo, cartItems);
     };
 
     render() {
@@ -80,6 +79,7 @@ const mapStateToProps = state => {
     return {
         cartItems: state.cart.cartItems,
         tax: state.cart.tax,
+        delivery: state.cart.delivery,
         subtotal: state.cart.subtotal,
         userId: state.auth.user.id,
     };
