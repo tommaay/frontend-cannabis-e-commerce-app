@@ -74,7 +74,7 @@ export const TotalContainer = styled.div`
     }
 
     .total {
-        margin-top: 15px;
+        margin: 15px 0 25px;
         border-top: 2px solid lightgray;
         border-bottom: 2px solid lightgray;
         padding: 15px 0;

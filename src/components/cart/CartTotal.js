@@ -6,7 +6,7 @@ import { TotalContainer } from './style/style.CartPage';
 import { CheckoutBtn, LogintBtn } from '../../styles/buttons';
 
 const CartTotal = props => {
-    const { cartItems, itemsInCart, subTotal, tax, loggedIn } = props;
+    const { cartItems, itemsInCart, subtotal, tax, loggedIn, delivery } = props;
 
     return (
         <TotalContainer>
@@ -14,8 +14,13 @@ const CartTotal = props => {
                 <div className="row">
                     <h5>Subtotal</h5>
                     <h5>
-                        {subTotal > 0 ? formatPrice(subTotal) : formatPrice(0)}
+                        {subtotal > 0 ? formatPrice(subtotal) : formatPrice(0)}
                     </h5>
+                </div>
+
+                <div className="row">
+                    <h5>Flat Delivery</h5>
+                    <h5>{formatPrice(delivery)}</h5>
                 </div>
 
                 <div className="row">
@@ -23,24 +28,17 @@ const CartTotal = props => {
                     <h5>{formatPrice(tax)}</h5>
                 </div>
 
-                <div className="row">
-                    <h5>Flat Delivery</h5>
-                    <h5>{formatPrice(1000)}</h5>
-                </div>
-
                 <div className="total">
-                    <h3>
-                        Total: {formatPrice(subTotal + subTotal * 0.3 + 1000)}
-                    </h3>
+                    <h3>Total: {formatPrice(subtotal + tax)}</h3>
                 </div>
 
                 <div className="row-right">
-                    {/* {loggedIn ? (
-                        <CheckoutBtn>Checkout</CheckoutBtn>
+                    {loggedIn ? (
+                        <CheckoutBtn to="/checkout">Checkout</CheckoutBtn>
                     ) : (
-                        <LogintBtn>Login</LogintBtn>
-                    )} */}
-                    <CheckoutBtn>Checkout</CheckoutBtn>
+                        <LogintBtn to="login">Login</LogintBtn>
+                    )}
+                    <CheckoutBtn to="/checkout">Checkout</CheckoutBtn>
                 </div>
             </div>
         </TotalContainer>
@@ -51,8 +49,9 @@ const mapStateToProps = state => {
     return {
         cartItems: state.cart.cartItems,
         itemsInCart: state.cart.itemsInCart,
-        subTotal: state.cart.subTotal,
+        subtotal: state.cart.subtotal,
         tax: state.cart.tax,
+        delivery: state.cart.delivery,
         loggedIn: state.auth.loggedIn,
     };
 };

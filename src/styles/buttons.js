@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { colors } from './colors';
+import { Link } from 'react-router-dom';
 
 export const Button = styled.button`
     padding: 15px 30px;
@@ -18,10 +19,17 @@ export const ClearBtn = styled(Button)`
     font-size: 14px;
 `;
 
-export const CheckoutBtn = styled(Button)`
-    background: ${colors.second};
+export const LogintBtn = styled(Link)`
+    padding: 15px 30px;
+    background: ${colors.main};
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    letter-spacing: 2px;
+    cursor: pointer;
 `;
 
-export const LogintBtn = styled(Button)`
-    background: ${colors.main};
+export const CheckoutBtn = styled(LogintBtn)`
+    background: ${colors.third};
 `;

@@ -15,8 +15,9 @@ import {
 const initialState = {
     cartItems: [],
     itemsInCart: {},
-    subTotal: 0,
+    subtotal: 0,
     tax: 0,
+    delivery: 1000,
     loading: false,
     error: false,
 };
@@ -40,8 +41,12 @@ const cartReducer = (state = initialState, action) => {
                     ...state,
                     loading: false,
                     cartItems: [...state.cartItems, action.product],
-                    subTotal: state.subTotal + action.product.specs.price,
-                    tax: (state.subTotal + action.product.specs.price) * 0.3,
+                    subtotal: state.subtotal + action.product.specs.price,
+                    tax:
+                        (state.subtotal +
+                            state.delivery +
+                            action.product.specs.price) *
+                        0.3,
                 };
             } else {
                 state.itemsInCart[action.product.specs.id] =
@@ -58,8 +63,12 @@ const cartReducer = (state = initialState, action) => {
                         }
                         return item;
                     }),
-                    subTotal: state.subTotal + action.product.specs.price,
-                    tax: (state.subTotal + action.product.specs.price) * 0.3,
+                    subtotal: state.subtotal + action.product.specs.price,
+                    tax:
+                        (state.subtotal +
+                            state.delivery +
+                            action.product.specs.price) *
+                        0.3,
                 };
             }
         case ADD_TO_CART_FAIL:
@@ -83,8 +92,10 @@ const cartReducer = (state = initialState, action) => {
                 return {
                     ...state,
                     loading: false,
-                    subTotal: state.subTotal - action.spec.price,
-                    tax: (state.subTotal - action.spec.price) * 0.3,
+                    subtotal: state.subtotal - action.spec.price,
+                    tax:
+                        (state.subtotal + state.delivery - action.spec.price) *
+                        0.3,
                 };
                 // If there is only 1 of this product left in the cart
             } else {
@@ -96,8 +107,10 @@ const cartReducer = (state = initialState, action) => {
                         product => product.specs.id !== action.spec.id
                     ),
                     loading: false,
-                    subTotal: state.subTotal - action.spec.price,
-                    tax: (state.subTotal - action.spec.price) * 0.3,
+                    subtotal: state.subtotal - action.spec.price,
+                    tax:
+                        (state.subtotal + state.delivery - action.spec.price) *
+                        0.3,
                 };
             }
         case REMOVE_FROM_CART_FAIL:
@@ -128,8 +141,8 @@ const cartReducer = (state = initialState, action) => {
                     item => item.specs.id !== action.id
                 ),
                 itemsInCart: state.itemsInCart,
-                subTotal: state.subTotal - amount,
-                tax: (state.subTotal - amount) * 0.3,
+                subtotal: state.subtotal - amount,
+                tax: (state.subtotal + state.delivery - amount) * 0.3,
             };
         case REMOVE_PRODUCT_FAIL:
             return {
@@ -148,8 +161,9 @@ const cartReducer = (state = initialState, action) => {
             return {
                 cartItems: [],
                 itemsInCart: {},
-                subTotal: 0,
+                subtotal: 0,
                 tax: 0,
+                delivery: 1000,
                 loading: false,
                 error: false,
             };

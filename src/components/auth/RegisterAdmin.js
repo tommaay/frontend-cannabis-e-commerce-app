@@ -34,7 +34,6 @@ class RegisterAdmin extends Component {
                     <input
                         type="string"
                         name="firstname"
-                        id="firstname"
                         onChange={this.changeHandler}
                     />
 
@@ -42,7 +41,6 @@ class RegisterAdmin extends Component {
                     <input
                         type="string"
                         name="lastname"
-                        id="lastname"
                         onChange={this.changeHandler}
                     />
 
@@ -50,7 +48,6 @@ class RegisterAdmin extends Component {
                     <input
                         type="email"
                         name="email"
-                        id="email"
                         onChange={this.changeHandler}
                     />
 
@@ -58,7 +55,6 @@ class RegisterAdmin extends Component {
                     <input
                         type="password"
                         name="password"
-                        id="password"
                         onChange={this.changeHandler}
                     />
 
@@ -66,7 +62,6 @@ class RegisterAdmin extends Component {
                     <input
                         type="string"
                         name="zipcode"
-                        id="zipcode"
                         onChange={this.changeHandler}
                     />
 
@@ -74,7 +69,6 @@ class RegisterAdmin extends Component {
                     <input
                         type="string"
                         name="phone"
-                        id="phone"
                         onChange={this.changeHandler}
                     />
 
@@ -82,7 +76,6 @@ class RegisterAdmin extends Component {
                     <input
                         type="date"
                         name="birthday"
-                        id="birthday"
                         onChange={this.changeHandler}
                     />
 

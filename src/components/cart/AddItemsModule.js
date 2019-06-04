@@ -49,7 +49,7 @@ const AddItemsModule = props => {
 const mapStateToProps = state => {
     return {
         itemsInCart: state.cart.itemsInCart,
-        subTotal: state.cart.subTotal,
+        subtotal: state.cart.subtotal,
     };
 };
 

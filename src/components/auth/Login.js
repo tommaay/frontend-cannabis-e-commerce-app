@@ -28,7 +28,6 @@ class Login extends Component {
                     <input
                         type="email"
                         name="email"
-                        id="email"
                         onChange={this.changeHandler}
                     />
 
@@ -36,7 +35,6 @@ class Login extends Component {
                     <input
                         type="password"
                         name="password"
-                        id="password"
                         onChange={this.changeHandler}
                     />
 
