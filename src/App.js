@@ -12,6 +12,8 @@ import CategoryNav from './components/nav/CategoryNav';
 import ProductsByCategory from './components/product/ProductsByCategory';
 import ProductPage from './components/product/ProductPage';
 import CartPage from './components/cart/CartPage';
+import OrdersPage from './components/orders/OrdersHistoryPage';
+
 
 class App extends Component {
     componentDidMount() {
@@ -40,6 +42,7 @@ class App extends Component {
                         component={ProductPage}
                     />
                     <Route path="/cart" component={CartPage} />
+                    <Route path="/orders" component={OrdersPage} />
                 </div>
             </Router>
         );

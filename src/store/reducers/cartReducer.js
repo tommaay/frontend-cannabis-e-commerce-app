@@ -10,9 +10,6 @@ import {
     REMOVE_PRODUCT_START,
     REMOVE_PRODUCT_SUCCESS,
     REMOVE_PRODUCT_FAIL,
-    ADD_ORDER_START,
-    ADD_ORDER_SUCCESS,
-    ADD_ORDER_FAIL,
 } from '../actions/cartActions';
 
 const initialState = {
@@ -175,27 +172,6 @@ const cartReducer = (state = initialState, action) => {
                 delivery: 1000,
                 loading: false,
                 error: false,
-                orderId: null,
-            };
-
-        // Add orders to database
-        case ADD_ORDER_START:
-            return {
-                ...state,
-                loading: true,
-            };
-        case ADD_ORDER_SUCCESS:
-            return {
-                ...state,
-                loading: false,
-                order: action.payload,
-                paid: false,
-            };
-        case ADD_ORDER_FAIL:
-            return {
-                ...state,
-                loading: false,
-                error: action.error,
             };
 
         default:

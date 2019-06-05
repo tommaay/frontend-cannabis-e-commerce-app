@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export const ADD_TO_CART_START = 'ADD_TO_CART_START';
 export const ADD_TO_CART_SUCCESS = 'ADD_TO_CART_SUCCESS';
 export const ADD_TO_CART_FAIL = 'ADD_TO_CART_FAIL';
@@ -14,10 +12,6 @@ export const REMOVE_PRODUCT_FAIL = 'REMOVE_PRODUCT_FAIL';
 
 export const CLEAR_CART_START = 'CLEAR_CART_START';
 export const CLEAR_CART_SUCCESS = 'CLEAR_CART_SUCCESS';
-
-export const ADD_ORDER_START = 'ADD_ORDER_START';
-export const ADD_ORDER_SUCCESS = 'ADD_ORDER_SUCCESS';
-export const ADD_ORDER_FAIL = 'ADD_ORDER_FAIL';
 
 export const PAY_START = 'PAY_START';
 export const PAY_SUCCESS = 'PAY_SUCCESS';
@@ -60,35 +54,4 @@ export const clearCart = () => dispatch => {
     dispatch({ type: CLEAR_CART_START });
 
     dispatch({ type: CLEAR_CART_SUCCESS });
-};
-
-export const addOrder = (cartInfo, cartItems) => async dispatch => {
-    dispatch({ type: ADD_ORDER_START });
-
-    try {
-        const res = await axios.post(
-            `https://flower-co.herokuapp.com/api/orders`,
-            cartInfo
-        );
-        const orderId = res.data.id;
-
-        cartItems.map(async item => {
-            const info = {
-                order_id: orderId,
-                product_id: item.id,
-                spec_id: item.specs.id,
-                quantity: item.quantity,
-                total: item.quantity * item.specs.price,
-            };
-
-            await axios.post(
-                `https://flower-co.herokuapp.com/api/product-orders`,
-                info
-            );
-        });
-
-        dispatch({ type: ADD_ORDER_SUCCESS, payload: res.data });
-    } catch (err) {
-        dispatch({ type: ADD_ORDER_FAIL, error: err });
-    }
 };

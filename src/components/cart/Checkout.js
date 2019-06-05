@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
-import { addOrder, clearCart } from '../../store/actions/cartActions';
+import { clearCart } from '../../store/actions/cartActions';
+import { addOrder } from '../../store/actions/orderActions';
 import StripeCheckout from 'react-stripe-checkout';
 
 class Checkout extends Component {
