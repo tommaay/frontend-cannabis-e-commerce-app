@@ -1,23 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getOrders } from '../../store/actions/orderActions';
+import { getOrders, setOrder } from '../../store/actions/orderActions';
 import { formatPrice } from '../../helpers/helpers';
+import OrderDetailsModal from './OrderDetailsModal';
 
 class OrdersPage extends Component {
+    state = {
+        modalShow: false,
+    };
+
     componentDidMount() {
         const id = this.props.user.id;
 
         this.props.getOrders(id);
     }
 
+    modalClose = () => this.setState({ modalShow: false });
+
     render() {
-        const { orders } = this.props;
+        const { orders, setOrder } = this.props;
 
         return (
             <div className="orders-page">
                 <h1>Orders History</h1>
 
-                <table class="table">
+                <table className="table">
                     <thead>
                         <tr>
                             <th scope="col">Date</th>
@@ -31,7 +38,13 @@ class OrdersPage extends Component {
                     <tbody>
                         {orders.map(order => {
                             return (
-                                <tr>
+                                <tr
+                                    key={order.id}
+                                    onClick={() => {
+                                        setOrder(order.id);
+                                        this.setState({ modalShow: true });
+                                    }}
+                                >
                                     <td>
                                         {new Date(
                                             order.created_at
@@ -46,6 +59,11 @@ class OrdersPage extends Component {
                         })}
                     </tbody>
                 </table>
+
+                <OrderDetailsModal
+                    show={this.state.modalShow}
+                    onHide={this.modalClose}
+                />
             </div>
         );
     }
@@ -60,5 +78,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { getOrders }
+    { getOrders, setOrder }
 )(OrdersPage);

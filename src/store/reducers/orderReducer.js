@@ -5,12 +5,17 @@ import {
     ADD_ORDER_START,
     ADD_ORDER_SUCCESS,
     ADD_ORDER_FAIL,
+    SET_ORDER_START,
+    SET_ORDER_SUCCESS,
+    SET_ORDER_FAIL,
 } from '../actions/orderActions';
 
 const initialState = {
     orders: [],
     loading: false,
     error: null,
+    order: {},
+    modal: true,
 };
 
 const orderReducer = (state = initialState, action) => {
@@ -47,9 +52,28 @@ const orderReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 order: action.payload,
-                paid: false,
             };
         case ADD_ORDER_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.error,
+            };
+
+        // Set order to state
+        case SET_ORDER_START:
+            return {
+                ...state,
+                loading: true,
+            };
+        case SET_ORDER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                order: action.payload,
+                modal: true,
+            };
+        case SET_ORDER_FAIL:
             return {
                 ...state,
                 loading: false,

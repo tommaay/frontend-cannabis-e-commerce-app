@@ -8,6 +8,10 @@ export const ADD_ORDER_START = 'ADD_ORDER_START';
 export const ADD_ORDER_SUCCESS = 'ADD_ORDER_SUCCESS';
 export const ADD_ORDER_FAIL = 'ADD_ORDER_FAIL';
 
+export const SET_ORDER_START = 'SET_ORDER_START';
+export const SET_ORDER_SUCCESS = 'SET_ORDER_SUCCESS';
+export const SET_ORDER_FAIL = 'SET_ORDER_FAIL';
+
 export const getOrders = userId => async dispatch => {
     dispatch({ type: GET_ORDERS_START });
 
@@ -50,5 +54,19 @@ export const addOrder = (cartInfo, cartItems) => async dispatch => {
         dispatch({ type: ADD_ORDER_SUCCESS, payload: res.data });
     } catch (err) {
         dispatch({ type: ADD_ORDER_FAIL, error: err });
+    }
+};
+
+export const setOrder = id => async dispatch => {
+    dispatch({ type: SET_ORDER_START });
+
+    try {
+        const res = await axios.get(
+            `https://flower-co.herokuapp.com/api/orders/${id}`
+        );
+
+        dispatch({ type: SET_ORDER_SUCCESS, payload: res.data });
+    } catch (err) {
+        dispatch({ type: SET_ORDER_FAIL, error: err });
     }
 };
