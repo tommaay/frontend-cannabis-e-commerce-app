@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors } from '../../../styles/colors';
 
 export const CarouselContainer = styled.div`
     .category-name {
@@ -16,9 +15,5 @@ export const CarouselContainer = styled.div`
         overflow-x: auto;
         margin-bottom: 30px;
         padding: 15px 0;
-
-        &::-webkit-scrollbar {
-            /* display: none; */
-        }
     }
 `;

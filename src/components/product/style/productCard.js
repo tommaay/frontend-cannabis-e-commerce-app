@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { colors, text } from '../../../styles/colors';
 import { Link } from 'react-router-dom';
 
 export const Card = styled.div`

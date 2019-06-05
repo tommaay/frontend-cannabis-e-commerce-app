@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { colors } from './colors';
 import { Link } from 'react-router-dom';
+import StripeCheckout from 'react-stripe-checkout';
 
 export const Button = styled.button`
     padding: 15px 30px;
@@ -30,6 +31,6 @@ export const LogintBtn = styled(Link)`
     cursor: pointer;
 `;
 
-export const CheckoutBtn = styled(LogintBtn)`
+export const CheckoutBtn = styled(StripeCheckout)`
     background: ${colors.third};
 `;

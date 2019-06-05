@@ -8,7 +8,7 @@ import { clearCart } from '../../store/actions/cartActions';
 import { ClearBtn } from '../../styles/buttons';
 
 const CartPage = props => {
-    const { cartItems, itemsInCart, clearCart, subtotal } = props;
+    const { cartItems, itemsInCart, clearCart } = props;
 
     return (
         <CartPageContainer>
@@ -42,7 +42,6 @@ const mapStateToProps = state => {
         cartItems: state.cart.cartItems,
         itemsInCart: state.cart.itemsInCart,
         loading: state.cart.loading,
-        subtotal: state.cart.subtotal,
     };
 };
 

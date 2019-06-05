@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { colors, text } from '../../../styles/colors';
-import { Button } from '../../../styles/buttons';
+import { colors } from '../../../styles/colors';
 
 export const CartPageContainer = styled.div`
     font-weight: 500;
@@ -86,5 +85,35 @@ export const TotalContainer = styled.div`
     .row-right {
         text-align: right;
         padding: 15px 0;
+
+        /* Restyle the default stripe button */
+        .StripeCheckout {
+            padding: 7px 10px !important;
+            background: ${colors.third} !important;
+            color: white !important;
+            font-size: 16px !important;
+            border: none !important;
+            border-radius: 50px !important;
+            letter-spacing: 2px !important;
+            cursor: pointer !important;
+            
+            span {
+                background-image: none !important;
+                background: none !important;
+                font-family: inherit !important;
+                font-size: 18px !important;
+                padding: inherit !important;
+                display: block !important;
+                height: 100% !important;
+                line-height: inherit !important;
+                color: white !important;
+                font-weight: 500 !important;
+                box-shadow: 0 0 0 0 !important;
+                text-shadow: 0 0 0 0 !important;
+                border-radius: 0 !important;
+                border: none !important;
+                text-decoration: none !important;
+            }
+        }          
     }
 `;
