@@ -5,6 +5,9 @@ import { connect } from 'react-redux';
 import OrdersHistoryPage from '../orders/OrdersHistoryPage';
 import UserProfile from './UserProfile';
 import AdminForm from '../auth/AdminForm';
+import ProductForm from '../product_forms/ProductForm';
+import CategoryForm from '../product_forms/CategoryForm';
+import TypeForm from '../product_forms/TypeForm';
 
 // React Bootstrap
 import Tabs from 'react-bootstrap/Tabs';
@@ -57,19 +60,37 @@ class AccountPage extends Component {
                             >
                                 <AdminForm />
                             </Tab>
-                        ) : (
-                            <span />
-                        )}
+                        ) : null}
 
                         {user.is_admin ? (
                             <Tab
-                                eventKey="product"
-                                title="Add Product"
+                                eventKey="products"
+                                title="Products"
                                 onClick={this.tabHandler}
-                            />
-                        ) : (
-                            <span />
-                        )}
+                            >
+                                <ProductForm />
+                            </Tab>
+                        ) : null}
+
+                        {user.is_admin ? (
+                            <Tab
+                                eventKey="categories"
+                                title="Categories"
+                                onClick={this.tabHandler}
+                            >
+                                <CategoryForm />
+                            </Tab>
+                        ) : null}
+
+                        {user.is_admin ? (
+                            <Tab
+                                eventKey="types"
+                                title="types"
+                                onClick={this.tabHandler}
+                            >
+                                <TypeForm />
+                            </Tab>
+                        ) : null}
                     </Tabs>
                 </div>
             </PageContainer>

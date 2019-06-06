@@ -19,6 +19,18 @@ export const GET_PRODUCT_BY_ID_START = 'GET_PRODUCT_BY_ID_START';
 export const GET_PRODUCT_BY_ID_SUCCESS = 'GET_PRODUCT_BY_ID_SUCCESS';
 export const GET_PRODUCT_BY_ID_FAIL = 'GET_PRODUCT_BY_ID_FAIL';
 
+export const ADD_PRODUCT_START = 'ADD_PRODUCT_START';
+export const ADD_PRODUCT_SUCCESS = 'ADD_PRODUCT_SUCCESS';
+export const ADD_PRODUCT_FAIL = 'ADD_PRODUCT_FAIL';
+
+export const ADD_CATEGORY_START = 'ADD_CATEGORY_START';
+export const ADD_CATEGORY_SUCCESS = 'ADD_CATEGORY_SUCCESS';
+export const ADD_CATEGORY_FAIL = 'ADD_CATEGORY_FAIL';
+
+export const ADD_TYPE_START = 'ADD_TYPE_START';
+export const ADD_TYPE_SUCCESS = 'ADD_TYPE_SUCCESS';
+export const ADD_TYPE_FAIL = 'ADD_TYPE_FAIL';
+
 // Get all products, categories, types
 export const getProducts = () => async dispatch => {
     dispatch({ type: GET_PRODUCTS_START });
@@ -105,5 +117,71 @@ export const getProductById = id => async dispatch => {
         return product;
     } catch (err) {
         dispatch({ type: GET_PRODUCT_BY_ID_FAIL, error: err });
+    }
+};
+
+// Add a new product
+export const addProduct = info => async dispatch => {
+    dispatch({ type: ADD_PRODUCT_START });
+
+    try {
+        const res = await axios.post(
+            `https://flower-co.herokuapp.com/api/products`,
+            info
+        );
+
+        console.log('addProduct', res.data);
+
+        const productId = res.data.id;
+
+        console.log('productId', productId);
+
+        dispatch({ type: ADD_PRODUCT_SUCCESS, payload: res.data });
+
+        return productId;
+    } catch (err) {
+        dispatch({ type: ADD_PRODUCT_FAIL, error: err });
+
+        return false;
+    }
+};
+
+// Add a new category
+export const addCategory = info => async dispatch => {
+    dispatch({ type: ADD_CATEGORY_START });
+
+    try {
+        const res = await axios.post(
+            `https://flower-co.herokuapp.com/api/categories`,
+            info
+        );
+
+        dispatch({ type: ADD_CATEGORY_SUCCESS, payload: res.data });
+
+        return true;
+    } catch (err) {
+        dispatch({ type: ADD_CATEGORY_FAIL, error: err });
+
+        return false;
+    }
+};
+
+// Add a new type
+export const addType = info => async dispatch => {
+    dispatch({ type: ADD_TYPE_START });
+
+    try {
+        const res = await axios.post(
+            `https://flower-co.herokuapp.com/api/types`,
+            info
+        );
+
+        dispatch({ type: ADD_TYPE_SUCCESS, payload: res.data });
+
+        return true;
+    } catch (err) {
+        dispatch({ type: ADD_TYPE_FAIL, error: err });
+
+        return false;
     }
 };

@@ -7,9 +7,9 @@ export const Nav = styled.nav`
     height: 40px;
 
     .links-container {
-        max-width: 1400px;
+        margin: 0 auto;
+        max-width: 1200px;
         height: 100%;
-        padding: 0 25px;
         display: flex;
         justify-content: flex-end;
         align-items: center;

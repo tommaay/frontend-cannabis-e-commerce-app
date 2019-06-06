@@ -3,7 +3,7 @@ import { colors } from '../../../styles/colors';
 
 export const FormContainer = styled.div`
     max-width: 400px;
-    margin: 15px auto;
+    margin: 50px auto;
     padding: 20px;
     border: 1px solid ${colors.third};
     border-radius: 10px;
@@ -20,4 +20,8 @@ export const FormContainer = styled.div`
             font-size: 16px;
         }
     }
+`;
+
+export const ProductFormContainer = styled(FormContainer)`
+    max-width: 600px;
 `;
