@@ -1,7 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { formatPrice } from '../../helpers/helpers';
+
+// React Bootstrap
 import Modal from 'react-bootstrap/Modal';
+
+// Style
+import { OrderContainer } from './style/orderDetails';
 
 const OrderDetails = props => {
     const { order } = props;
@@ -25,67 +30,74 @@ const OrderDetails = props => {
                 aria-labelledby="contained-modal-title-vcenter"
                 centered
             >
-                <Modal.Header closeButton>
-                    <Modal.Title id="contained-modal-title-vcenter">
-                        Order #{order.id}
-                    </Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <table className="table">
-                        <thead>
-                            <tr>
-                                <th>Item</th>
-                                <th>Size</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Subtotal</th>
-                            </tr>
-                        </thead>
+                <OrderContainer>
+                    <Modal.Header closeButton>
+                        <Modal.Title id="contained-modal-title-vcenter">
+                            Order #{order.id}
+                        </Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <table className="table">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Size</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Subtotal</th>
+                                </tr>
+                            </thead>
 
-                        <tbody>
-                            {order.products.map(product => {
-                                subtotal += product.price * product.quantity;
+                            <tbody>
+                                {order.products.map(product => {
+                                    subtotal +=
+                                        product.price * product.quantity;
 
-                                return (
-                                    <tr key={product.product_order_id}>
-                                        <td>
-                                            <span className="modal-image">
-                                                <img
-                                                    src={product.image}
-                                                    alt={product.name}
-                                                />
-                                            </span>
-                                            <span className="modal-name">
-                                                {product.name}
-                                            </span>
-                                        </td>
+                                    return (
+                                        <tr key={product.product_order_id}>
+                                            <td>{product.name}</td>
 
-                                        <td>{product.size}</td>
+                                            <td>{product.size}</td>
 
-                                        <td>{formatPrice(product.price)}</td>
+                                            <td>
+                                                {formatPrice(product.price)}
+                                            </td>
 
-                                        <td>{product.quantity}</td>
+                                            <td>{product.quantity}</td>
 
-                                        <td>
-                                            {formatPrice(
-                                                product.price * product.quantity
-                                            )}
-                                        </td>
-                                    </tr>
-                                );
-                            })}
-                        </tbody>
-                    </table>
+                                            <td>
+                                                {formatPrice(
+                                                    product.price *
+                                                        product.quantity
+                                                )}
+                                            </td>
+                                        </tr>
+                                    );
+                                })}
+                            </tbody>
+                        </table>
 
-                    <div className="row">
-                        <div className="col-sm-6 offset-sm-6 col-lg-4 offset-lg-8">
-                            <h5>Subtotal: {formatPrice(subtotal)}</h5>
-                            <h5>Delivery: {formatPrice(order.delivery)}</h5>
-                            <h5>Tax(30%): {formatPrice(order.tax)}</h5>
-                            <h3>Total: {formatPrice(order.total)}</h3>
+                        <div className="row">
+                            <div className="col-sm-6 offset-sm-6 col-lg-4 offset-lg-8 total-box">
+                                <div className="sub">
+                                    <h6>Subtotal:</h6>
+                                    <h6>{formatPrice(subtotal)}</h6>
+                                </div>
+                                <div className="sub">
+                                    <h6>Delivery:</h6>
+                                    <h6>{formatPrice(order.delivery)}</h6>
+                                </div>
+                                <div className="sub">
+                                    <h6>Tax(30%):</h6>
+                                    <h6>{formatPrice(order.tax)}</h6>
+                                </div>
+                                <div className="total">
+                                    <h5>Total: {formatPrice(order.total)}</h5>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </Modal.Body>
+                    </Modal.Body>
+                </OrderContainer>
             </Modal>
         );
     }
