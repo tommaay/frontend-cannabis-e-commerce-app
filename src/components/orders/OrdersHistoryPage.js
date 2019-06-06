@@ -22,8 +22,6 @@ class OrdersPage extends Component {
 
         return (
             <div className="orders-page">
-                <h1>Orders History</h1>
-
                 <table className="table">
                     <thead>
                         <tr>

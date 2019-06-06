@@ -8,6 +8,10 @@ export const REGISTER_START = 'REGISTER_START';
 export const REGISTER_SUCCESS = 'REGISTER_SUCCESS';
 export const REGISTER_FAIL = 'REGISTER_FAIL';
 
+export const UPDATE_USER_START = 'UPDATE_USER_START';
+export const UPDATE_USER_SUCCESS = 'UPDATE_USER_SUCCESS';
+export const UPDATE_USER_FAIL = 'UPDATE_USER_FAIL';
+
 export const LOGOUT = 'LOGOUT';
 
 // Login
@@ -36,6 +40,28 @@ export const register = creds => dispatch => {
             dispatch({ type: REGISTER_SUCCESS, payload: res.data.user });
         })
         .catch(err => dispatch({ type: REGISTER_FAIL, error: err }));
+};
+
+// Update user
+export const updateUser = (id, info) => async dispatch => {
+    dispatch({ type: UPDATE_USER_START });
+
+    try {
+        const res = await axios.patch(
+            `https://flower-co.herokuapp.com/api/users/${id}`,
+            info
+        );
+
+        dispatch({ type: UPDATE_USER_SUCCESS, payload: res.data });
+        if (res.data) {
+            console.log('res', res.data);
+            return true;
+        } else {
+            return false;
+        }
+    } catch (err) {
+        dispatch({ type: UPDATE_USER_FAIL, error: err });
+    }
 };
 
 // Logout

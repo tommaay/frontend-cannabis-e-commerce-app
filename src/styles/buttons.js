@@ -34,3 +34,8 @@ export const LogintBtn = styled(Link)`
 export const CheckoutBtn = styled(StripeCheckout)`
     background: ${colors.third};
 `;
+
+export const SaveBtn = styled(Button)`
+    padding: 10px 20px;
+    background: ${colors.third};
+`;

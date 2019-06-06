@@ -7,7 +7,7 @@ const SignedinLinks = props => {
     return (
         <>
             <Link to="/">Home</Link>
-            <Link to="/orders">My Account</Link>
+            <Link to="/account">My Account</Link>
             <Link to="/" onClick={props.logout}>
                 Logout
             </Link>

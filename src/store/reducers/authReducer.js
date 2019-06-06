@@ -5,6 +5,9 @@ import {
     REGISTER_START,
     REGISTER_SUCCESS,
     REGISTER_FAIL,
+    UPDATE_USER_START,
+    UPDATE_USER_SUCCESS,
+    UPDATE_USER_FAIL,
     LOGOUT,
 } from '../actions/authActions';
 
@@ -17,6 +20,7 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
     switch (action.type) {
+        // Login
         case LOGIN_START:
             return {
                 ...state,
@@ -38,6 +42,7 @@ const authReducer = (state = initialState, action) => {
                 error: action.error,
             };
 
+        // Register
         case REGISTER_START:
             return {
                 ...state,
@@ -59,6 +64,28 @@ const authReducer = (state = initialState, action) => {
                 error: action.error,
             };
 
+        // Update user
+        case UPDATE_USER_START:
+            return {
+                ...state,
+                loading: true,
+            };
+
+        case UPDATE_USER_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                user: action.payload,
+            };
+
+        case UPDATE_USER_FAIL:
+            return {
+                ...state,
+                loading: false,
+                error: action.error,
+            };
+
+        // Logout
         case LOGOUT:
             return {
                 user: null,

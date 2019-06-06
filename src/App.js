@@ -5,15 +5,15 @@ import { getProducts } from './store/actions/productActions';
 
 import Dashboard from './components/dashboard/Dashboard';
 import Login from './components/auth/Login';
-import RegisterUser from './components/auth/RegisterUser';
-import RegisterAdmin from './components/auth/RegisterAdmin';
+import RegisterUser from './components/auth/UserForm';
+import RegisterAdmin from './components/auth/AdminForm';
 import Navbar from './components/nav/Navbar';
 import CategoryNav from './components/nav/CategoryNav';
 import ProductsByCategory from './components/product/ProductsByCategory';
 import ProductPage from './components/product/ProductPage';
 import CartPage from './components/cart/CartPage';
 import OrdersPage from './components/orders/OrdersHistoryPage';
-
+import AccountPage from './components/account/AccountPage';
 
 class App extends Component {
     componentDidMount() {
@@ -42,6 +42,7 @@ class App extends Component {
                         component={ProductPage}
                     />
                     <Route path="/cart" component={CartPage} />
+                    <Route path="/account" component={AccountPage} />
                     <Route path="/orders" component={OrdersPage} />
                 </div>
             </Router>

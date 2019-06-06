@@ -10,6 +10,8 @@ import {
     SET_ORDER_FAIL,
 } from '../actions/orderActions';
 
+import { LOGOUT } from '../actions/authActions';
+
 const initialState = {
     orders: [],
     loading: false,
@@ -78,6 +80,16 @@ const orderReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 error: action.error,
+            };
+
+        // Logout
+        case LOGOUT:
+            return {
+                orders: [],
+                loading: false,
+                error: null,
+                order: {},
+                modal: true,
             };
 
         default:

@@ -12,6 +12,8 @@ import {
     REMOVE_PRODUCT_FAIL,
 } from '../actions/cartActions';
 
+import { LOGOUT } from '../actions/authActions';
+
 const initialState = {
     cartItems: [],
     itemsInCart: {},
@@ -172,6 +174,20 @@ const cartReducer = (state = initialState, action) => {
                 delivery: 1000,
                 loading: false,
                 error: false,
+            };
+
+        // Logout
+        case LOGOUT:
+            return {
+                cartItems: [],
+                itemsInCart: {},
+                subtotal: 0,
+                tax: 0,
+                taxRate: 0.3,
+                delivery: 1000,
+                loading: false,
+                error: false,
+                order: null,
             };
 
         default:
