@@ -5,9 +5,10 @@ const SignedoutLinks = () => {
     return (
         <>
             <Link to="/">Home</Link>
-            <Link to="/memberships">Memberships</Link>
             <Link to="/login">Login</Link>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">
+                <i class="fas fa-shopping-cart" />
+            </Link>
         </>
     );
 };

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+// Components
 import OrdersHistoryPage from '../orders/OrdersHistoryPage';
 import UserProfile from './UserProfile';
+import AdminForm from '../auth/AdminForm';
 
 // React Bootstrap
 import Tabs from 'react-bootstrap/Tabs';
@@ -49,11 +52,21 @@ class AccountPage extends Component {
                         {user.is_admin ? (
                             <Tab
                                 eventKey="admin"
-                                title="Admin"
+                                title="Add Admin"
                                 onClick={this.tabHandler}
                             >
-                                <h1>Admin</h1>
+                                <AdminForm />
                             </Tab>
+                        ) : (
+                            <span />
+                        )}
+
+                        {user.is_admin ? (
+                            <Tab
+                                eventKey="product"
+                                title="Add Product"
+                                onClick={this.tabHandler}
+                            />
                         ) : (
                             <span />
                         )}

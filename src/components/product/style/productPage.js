@@ -69,6 +69,7 @@ export const PageContainer = styled.div`
             padding: 15px 30px;
             border: 1px solid ${colors.third};
             border-radius: 40px;
+            background-color: white;
 
             .price {
                 display: flex;

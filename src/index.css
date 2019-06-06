@@ -99,6 +99,7 @@ section {
 body {
     line-height: 1;
     font-family: 'Work Sans', sans-serif;
+    background-color: whitesmoke;
 }
 blockquote,
 q {
@@ -162,6 +163,10 @@ h6 {
 }
 
 a {
+    text-decoration: none;
+}
+
+a:hover {
     text-decoration: none;
 }
 

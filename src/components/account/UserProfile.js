@@ -45,12 +45,21 @@ class UserProfile extends Component {
 
     changeHandler = e => {
         this.setState({
-            [e.target.name]: e.target.value,
+            user: {
+                ...this.state.user,
+                [e.target.name]: e.target.value,
+            },
         });
     };
 
-    submitHandler = id => {
-        this.props.updateUser(id, this.state.user);
+    submitHandler = async id => {
+        const res = await this.props.updateUser(id, this.state.user);
+
+        if (res) {
+            this.successModalOn();
+        } else {
+            this.errorModalOn();
+        }
     };
 
     modalClose = () => {
@@ -82,7 +91,12 @@ class UserProfile extends Component {
 
         return (
             <ProfileContainer>
-                <Form onSubmit={() => this.submitHandler(user.id)}>
+                <Form
+                    onSubmit={e => {
+                        e.preventDefault();
+                        this.submitHandler(user.id);
+                    }}
+                >
                     <Form.Group as={Row}>
                         <Col sm="6">
                             <Form.Label htmlFor="firstname">

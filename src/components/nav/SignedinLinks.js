@@ -11,7 +11,9 @@ const SignedinLinks = props => {
             <Link to="/" onClick={props.logout}>
                 Logout
             </Link>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart">
+                <i class="fas fa-shopping-basket" />
+            </Link>
         </>
     );
 };

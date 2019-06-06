@@ -7,6 +7,7 @@ export const Card = styled.div`
     box-shadow: 0px 0px 10px -2px gray;
     margin: 5px 18px;
     text-align: center;
+    background-color: white;
 
     .image {
         background: rgb(236, 233, 228);

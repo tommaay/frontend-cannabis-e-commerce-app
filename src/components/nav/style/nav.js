@@ -7,9 +7,9 @@ export const Nav = styled.nav`
     height: 40px;
 
     .links-container {
-        max-width: 1600px;
+        max-width: 1400px;
         height: 100%;
-        padding: 0 20px;
+        padding: 0 25px;
         display: flex;
         justify-content: flex-end;
         align-items: center;
@@ -41,5 +41,11 @@ export const CategoryBar = styled.div`
             margin: 5px 15px;
             font-size: 16px;
         }
+    }
+
+    .active {
+        color: red;
+        font-size: 22px;
+        font-weight: 500;
     }
 `;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { gray } from 'ansi-colors';
+import { colors } from '../../../styles/colors';
 
 export const OrderContainer = styled.div`
     padding: 20px;
@@ -13,9 +13,10 @@ export const OrderContainer = styled.div`
         margin-bottom: 20px;
 
         thead {
-            background: gray;
+            background: ${colors.third};
             color: white;
             border: none;
+            font-size: 20px;
         }
 
         tbody {

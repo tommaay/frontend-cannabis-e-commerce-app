@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { login } from '../../store/actions/authActions';
+
+// Modals
+import SuccessModal from '../modals/SuccessModal';
+import ErrorModal from '../modals/ErrorModal';
+
+// Style
+import { SaveBtn } from '../../styles/buttons';
+import { FormContainer } from './style/form';
+
+// React Bootstrap
+import Form from 'react-bootstrap/Form';
 
 class Login extends Component {
     state = {
@@ -22,30 +34,34 @@ class Login extends Component {
 
     render() {
         return (
-            <div>
-                <form onSubmit={this.loginHandler}>
-                    <label htmlFor="email">Email</label>
-                    <input
+            <FormContainer style={{ background: 'white' }}>
+                <Form onSubmit={this.loginHandler}>
+                    <Form.Label htmlFor="email">Email</Form.Label>
+                    <Form.Control
                         type="email"
                         name="email"
                         onChange={this.changeHandler}
                     />
 
-                    <label htmlFor="password">Password</label>
-                    <input
+                    <Form.Label htmlFor="password">Password</Form.Label>
+                    <Form.Control
                         type="password"
                         name="password"
                         onChange={this.changeHandler}
                     />
 
-                    <button>Sign In</button>
-                </form>
-            </div>
+                    <div className="d-flex justify-content-end mt-4">
+                        <SaveBtn>Sign In</SaveBtn>
+                    </div>
+                </Form>
+            </FormContainer>
         );
     }
 }
 
-export default connect(
-    null,
-    { login }
-)(Login);
+export default withRouter(
+    connect(
+        null,
+        { login }
+    )(Login)
+);

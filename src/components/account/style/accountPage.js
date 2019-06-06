@@ -7,6 +7,7 @@ export const PageContainer = styled.div`
     padding: 30px;
     padding-bottom: 1px;
     box-shadow: 0 0 5px 0px lightgray;
+    background-color: white;
 
     .tabs-container {
         max-width: 800px;
@@ -17,8 +18,12 @@ export const PageContainer = styled.div`
         color: ${colors.third};
     }
 
+    .nav-link:hover {
+        color: ${colors.second};
+    }
+
     .nav-link {
-        color: inherit;
+        color: gray;
     }
 
     .tab-pane {

@@ -50,13 +50,6 @@ class Checkout extends Component {
         const { tax, subtotal, user } = this.props;
         const amount = subtotal + tax;
 
-        const btn = document.getElementsByClassName('StripeCheckout');
-        // const stripeBtn = btn[0];
-
-        console.log(btn);
-        // console.log(btn.localName);
-        // console.log(stripeBtn);
-
         return (
             <>
                 <StripeCheckout

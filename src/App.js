@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import { getProducts } from './store/actions/productActions';
 
 import Dashboard from './components/dashboard/Dashboard';
-import Login from './components/auth/Login';
-import RegisterUser from './components/auth/UserForm';
-import RegisterAdmin from './components/auth/AdminForm';
+import AuthDashboard from './components/auth/AuthDashboard';
 import Navbar from './components/nav/Navbar';
 import CategoryNav from './components/nav/CategoryNav';
 import ProductsByCategory from './components/product/ProductsByCategory';
@@ -28,9 +26,7 @@ class App extends Component {
 
                 <div className="App">
                     <Route exact path="/" component={Dashboard} />
-                    <Route path="/login" component={Login} />
-                    <Route path="/register-user" component={RegisterUser} />
-                    <Route path="/register-admin" component={RegisterAdmin} />
+                    <Route path="/login" component={AuthDashboard} />
                     <Route
                         exact
                         path="/products/category/:category"

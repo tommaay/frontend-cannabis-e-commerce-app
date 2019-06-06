@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { getOrders, setOrder } from '../../store/actions/orderActions';
 import { formatPrice } from '../../helpers/helpers';
 import OrderDetailsModal from './OrderDetailsModal';
+import { OrderHistoryContainer } from './style/ordersHistory';
 
 class OrdersPage extends Component {
     state = {
@@ -21,7 +22,7 @@ class OrdersPage extends Component {
         const { orders, setOrder } = this.props;
 
         return (
-            <div className="orders-page">
+            <OrderHistoryContainer>
                 <table className="table">
                     <thead>
                         <tr>
@@ -42,6 +43,7 @@ class OrdersPage extends Component {
                                         setOrder(order.id);
                                         this.setState({ modalShow: true });
                                     }}
+                                    className="order-row"
                                 >
                                     <td>
                                         {new Date(
@@ -62,7 +64,7 @@ class OrdersPage extends Component {
                     show={this.state.modalShow}
                     onHide={this.modalClose}
                 />
-            </div>
+            </OrderHistoryContainer>
         );
     }
 }

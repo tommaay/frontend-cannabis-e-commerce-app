@@ -3,10 +3,19 @@ import { connect } from 'react-redux';
 import { CategoryBar, Link } from './style/nav';
 
 const CategoryNav = props => {
+    const getNodeList = e => {
+        console.log(e.target);
+    };
+
     return (
         <CategoryBar>
             <div className="links-container">
-                <Link to="/products/category/edibles">Edibles</Link>
+                <Link
+                    to="/products/category/edibles"
+                    onClick={e => getNodeList(e)}
+                >
+                    Edibles
+                </Link>
                 <Link to="/products/category/ready-to-roll">Ready to Roll</Link>
                 <Link to="/products/category/smalls">Smalls</Link>
                 <Link to="/products/category/generic-flower">
