@@ -5,6 +5,7 @@ import { addCategory } from '../../store/actions/productActions';
 // Modals
 import SuccessModal from '../modals/SuccessModal';
 import ErrorModal from '../modals/ErrorModal';
+import Loading from '../modals/Loading';
 
 // Style
 import { SaveBtn } from '../../styles/buttons';
@@ -66,42 +67,54 @@ class CategoryForm extends Component {
 
     render() {
         return (
-            <FormContainer>
-                <Form onSubmit={this.submitHandler}>
-                    <Form.Label htmlFor="name">Category Name</Form.Label>
-                    <Form.Control
-                        type="string"
-                        name="name"
-                        onChange={this.changeHandler}
+            <>
+                <FormContainer>
+                    <Form onSubmit={this.submitHandler}>
+                        <Form.Label htmlFor="name">Category Name</Form.Label>
+                        <Form.Control
+                            type="string"
+                            name="name"
+                            onChange={this.changeHandler}
+                        />
+
+                        <Form.Label htmlFor="description">
+                            Description
+                        </Form.Label>
+                        <Form.Control
+                            as="textarea"
+                            name="description"
+                            onChange={this.changeHandler}
+                        />
+
+                        <div className="d-flex justify-content-end mt-4">
+                            <SaveBtn>Save</SaveBtn>
+                        </div>
+                    </Form>
+
+                    <SuccessModal
+                        show={this.state.successModal}
+                        onHide={this.modalClose}
                     />
 
-                    <Form.Label htmlFor="description">Description</Form.Label>
-                    <Form.Control
-                        as="textarea"
-                        name="description"
-                        onChange={this.changeHandler}
+                    <ErrorModal
+                        show={this.state.errorModal}
+                        onHide={this.modalClose}
                     />
+                </FormContainer>
 
-                    <div className="d-flex justify-content-end mt-4">
-                        <SaveBtn>Save</SaveBtn>
-                    </div>
-                </Form>
-
-                <SuccessModal
-                    show={this.state.successModal}
-                    onHide={this.modalClose}
-                />
-
-                <ErrorModal
-                    show={this.state.errorModal}
-                    onHide={this.modalClose}
-                />
-            </FormContainer>
+                {this.props.loading ? <Loading /> : null}
+            </>
         );
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        loading: state.products.loading,
+    };
+};
+
 export default connect(
-    null,
+    mapStateToProps,
     { addCategory }
 )(CategoryForm);

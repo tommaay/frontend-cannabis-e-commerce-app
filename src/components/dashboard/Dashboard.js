@@ -2,10 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { getAllByCategory } from '../../store/actions/productActions';
 import Carousel from './Carousel';
+import Loading from '../modals/Loading';
 
 const Dashboard = props => {
     if (props.products.length === 0) {
-        return <h1>Loading...</h1>;
+        return <Loading />;
     } else {
         const { products, categories, getAllByCategory } = props;
 

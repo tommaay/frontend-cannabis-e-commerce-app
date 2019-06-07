@@ -6,6 +6,7 @@ import { login } from '../../store/actions/authActions';
 // Modals
 import SuccessModal from '../modals/SuccessModal';
 import ErrorModal from '../modals/ErrorModal';
+import Loading from '../modals/Loading';
 
 // Style
 import { SaveBtn } from '../../styles/buttons';
@@ -54,14 +55,22 @@ class Login extends Component {
                         <SaveBtn>Sign In</SaveBtn>
                     </div>
                 </Form>
+
+                {this.props.loading ? <Loading /> : null}
             </FormContainer>
         );
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        loading: state.auth.loading,
+    };
+};
+
 export default withRouter(
     connect(
-        null,
+        mapStateToProps,
         { login }
     )(Login)
 );

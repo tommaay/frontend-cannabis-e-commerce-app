@@ -6,6 +6,7 @@ import { addProduct, getProducts } from '../../store/actions/productActions';
 // Modals
 import SuccessModal from '../modals/SuccessModal';
 import ErrorModal from '../modals/ErrorModal';
+import Loading from '../modals/Loading';
 
 // Style
 import { SaveBtn } from '../../styles/buttons';
@@ -129,131 +130,141 @@ class ProductForm extends Component {
 
     render() {
         return (
-            <ProductFormContainer>
-                <Form onSubmit={this.submitHandler}>
-                    <Form.Label htmlFor="name">Name</Form.Label>
-                    <Form.Control
-                        type="string"
-                        name="name"
-                        onChange={this.productChangeHandler}
+            <>
+                <ProductFormContainer>
+                    <Form onSubmit={this.submitHandler}>
+                        <Form.Label htmlFor="name">Name</Form.Label>
+                        <Form.Control
+                            type="string"
+                            name="name"
+                            onChange={this.productChangeHandler}
+                        />
+
+                        <Form.Label htmlFor="description">
+                            Description
+                        </Form.Label>
+                        <Form.Control
+                            as="textarea"
+                            name="description"
+                            onChange={this.productChangeHandler}
+                        />
+
+                        <Row className="mb-3 mt-5">
+                            <Col md={4}>
+                                <Form.Label htmlFor="thc">THC</Form.Label>
+                                <Form.Control
+                                    type="string"
+                                    name="thc"
+                                    onChange={this.productChangeHandler}
+                                />
+                            </Col>
+
+                            <Col md={4}>
+                                <Form.Label htmlFor="cbd">CBD</Form.Label>
+                                <Form.Control
+                                    type="string"
+                                    name="cbd"
+                                    onChange={this.productChangeHandler}
+                                />
+                            </Col>
+
+                            <Col md={4}>
+                                <Form.Label htmlFor="type">Type</Form.Label>
+                                <Form.Control
+                                    as="select"
+                                    name="type"
+                                    onChange={this.productChangeHandler}
+                                >
+                                    <option>Select...</option>
+                                    {this.props.types.map(type => (
+                                        <option value={type.id}>
+                                            {type.name}
+                                        </option>
+                                    ))}
+                                </Form.Control>
+                            </Col>
+                        </Row>
+
+                        <Row className="mb-3">
+                            <Col md={4}>
+                                <Form.Label htmlFor="category">
+                                    Category
+                                </Form.Label>
+                                <Form.Control
+                                    as="select"
+                                    name="category"
+                                    onChange={this.productChangeHandler}
+                                >
+                                    <option>Select...</option>
+                                    {this.props.categories.map(category => (
+                                        <option value={category.id}>
+                                            {category.name}
+                                        </option>
+                                    ))}
+                                </Form.Control>
+                            </Col>
+
+                            <Col md={8}>
+                                <Form.Label htmlFor="image">Image</Form.Label>
+                                <Form.Control
+                                    type="file"
+                                    name="image"
+                                    onChange={this.fileHandler}
+                                />
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col md={4}>
+                                <Form.Label htmlFor="size">Size</Form.Label>
+                                <Form.Control
+                                    type="string"
+                                    name="size"
+                                    onChange={this.specChangeHandler}
+                                />
+                            </Col>
+
+                            <Col md={4}>
+                                <Form.Label htmlFor="price">
+                                    Price (Cents)
+                                </Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    name="price"
+                                    onChange={this.specChangeHandler}
+                                />
+                            </Col>
+
+                            <Col md={4}>
+                                <Form.Label htmlFor="inventory">
+                                    Inventory
+                                </Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    name="inventory"
+                                    onChange={this.specChangeHandler}
+                                />
+                            </Col>
+                        </Row>
+
+                        <div className="d-flex justify-content-end mt-4">
+                            <SaveBtn>Save</SaveBtn>
+                        </div>
+                    </Form>
+
+                    <SuccessModal
+                        show={this.state.successModal}
+                        onHide={this.modalClose}
                     />
 
-                    <Form.Label htmlFor="description">Description</Form.Label>
-                    <Form.Control
-                        as="textarea"
-                        name="description"
-                        onChange={this.productChangeHandler}
+                    <ErrorModal
+                        show={this.state.errorModal}
+                        onHide={this.modalClose}
                     />
+                </ProductFormContainer>
 
-                    <Row className="mb-3 mt-5">
-                        <Col md={4}>
-                            <Form.Label htmlFor="thc">THC</Form.Label>
-                            <Form.Control
-                                type="string"
-                                name="thc"
-                                onChange={this.productChangeHandler}
-                            />
-                        </Col>
-
-                        <Col md={4}>
-                            <Form.Label htmlFor="cbd">CBD</Form.Label>
-                            <Form.Control
-                                type="string"
-                                name="cbd"
-                                onChange={this.productChangeHandler}
-                            />
-                        </Col>
-
-                        <Col md={4}>
-                            <Form.Label htmlFor="type">Type</Form.Label>
-                            <Form.Control
-                                as="select"
-                                name="type"
-                                onChange={this.productChangeHandler}
-                            >
-                                <option>Select...</option>
-                                {this.props.types.map(type => (
-                                    <option value={type.id}>{type.name}</option>
-                                ))}
-                            </Form.Control>
-                        </Col>
-                    </Row>
-
-                    <Row className="mb-3">
-                        <Col md={4}>
-                            <Form.Label htmlFor="category">Category</Form.Label>
-                            <Form.Control
-                                as="select"
-                                name="category"
-                                onChange={this.productChangeHandler}
-                            >
-                                <option>Select...</option>
-                                {this.props.categories.map(category => (
-                                    <option value={category.id}>
-                                        {category.name}
-                                    </option>
-                                ))}
-                            </Form.Control>
-                        </Col>
-
-                        <Col md={8}>
-                            <Form.Label htmlFor="image">Image</Form.Label>
-                            <Form.Control
-                                type="file"
-                                name="image"
-                                onChange={this.fileHandler}
-                            />
-                        </Col>
-                    </Row>
-
-                    <Row>
-                        <Col md={4}>
-                            <Form.Label htmlFor="size">Size</Form.Label>
-                            <Form.Control
-                                type="string"
-                                name="size"
-                                onChange={this.specChangeHandler}
-                            />
-                        </Col>
-
-                        <Col md={4}>
-                            <Form.Label htmlFor="price">
-                                Price (Cents)
-                            </Form.Label>
-                            <Form.Control
-                                type="number"
-                                name="price"
-                                onChange={this.specChangeHandler}
-                            />
-                        </Col>
-
-                        <Col md={4}>
-                            <Form.Label htmlFor="inventory">
-                                Inventory
-                            </Form.Label>
-                            <Form.Control
-                                type="number"
-                                name="inventory"
-                                onChange={this.specChangeHandler}
-                            />
-                        </Col>
-                    </Row>
-
-                    <div className="d-flex justify-content-end mt-4">
-                        <SaveBtn>Save</SaveBtn>
-                    </div>
-                </Form>
-
-                <SuccessModal
-                    show={this.state.successModal}
-                    onHide={this.modalClose}
-                />
-
-                <ErrorModal
-                    show={this.state.errorModal}
-                    onHide={this.modalClose}
-                />
-            </ProductFormContainer>
+                {this.props.loading ? <Loading /> : null}
+            </>
         );
     }
 }
@@ -262,6 +273,7 @@ const mapStateToProps = state => {
     return {
         categories: state.products.categories,
         types: state.products.types,
+        loading: state.products.loading,
     };
 };
 

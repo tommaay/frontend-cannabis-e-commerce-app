@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import AddItemModule from '../cart/AddItemsModule';
 import { PageContainer } from './style/productPage';
 import { formatPrice } from '../../helpers/helpers';
+import Loading from '../modals/Loading';
 
 const ProductPage = props => {
     const { products } = props;
     const id = parseInt(props.match.params.productId);
 
     if (products.length === 0) {
-        return <h1>Loading...</h1>;
+        return <Loading />;
     } else {
         const product = products.filter(product => product.id === id)[0];
 

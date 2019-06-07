@@ -3,10 +3,11 @@ import { connect } from 'react-redux';
 import { getAllByCategoryParams } from '../../store/actions/productActions';
 import ProductCard from './ProductCard';
 import { ProductsContainer } from './style/products';
+import Loading from '../modals/Loading';
 
 const ProductsByCategory = props => {
     if (props.products.length === 0) {
-        return <h1>Loading...</h1>;
+        return <Loading />;
     } else {
         const { products, getAllByCategoryParams } = props;
         const category = props.match.params.category;

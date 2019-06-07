@@ -2,38 +2,43 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CartItem from './CartItem';
 import CartTotal from './CartTotal';
+import Loading from '../modals/Loading';
 
 import { CartPageContainer } from './style/style.CartPage';
 import { clearCart } from '../../store/actions/cartActions';
 import { ClearBtn } from '../../styles/buttons';
 
 const CartPage = props => {
-    const { cartItems, itemsInCart, clearCart } = props;
+    const { cartItems, itemsInCart, clearCart, loading } = props;
 
     return (
-        <CartPageContainer>
-            <div className="header">
-                <h1>Shopping Cart</h1>
+        <>
+            <CartPageContainer>
+                <div className="header">
+                    <h1>Shopping Cart</h1>
 
-                <ClearBtn onClick={clearCart} className="clear-btn">
-                    Clear
-                </ClearBtn>
-            </div>
+                    <ClearBtn onClick={clearCart} className="clear-btn">
+                        Clear
+                    </ClearBtn>
+                </div>
 
-            <>
-                {cartItems.map(item => {
-                    return (
-                        <CartItem
-                            item={item}
-                            itemsInCart={itemsInCart}
-                            key={item.specs.id}
-                        />
-                    );
-                })}
-            </>
+                <>
+                    {cartItems.map(item => {
+                        return (
+                            <CartItem
+                                item={item}
+                                itemsInCart={itemsInCart}
+                                key={item.specs.id}
+                            />
+                        );
+                    })}
+                </>
 
-            <CartTotal />
-        </CartPageContainer>
+                <CartTotal />
+            </CartPageContainer>
+            
+            {loading ? <Loading /> : null}
+        </>
     );
 };
 

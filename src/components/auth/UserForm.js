@@ -6,6 +6,7 @@ import { registerUser } from '../../store/actions/authActions';
 // Modals
 import SuccessModal from '../modals/SuccessModal';
 import ErrorModal from '../modals/ErrorModal';
+import Loading from '../modals/Loading';
 
 // Style
 import { SaveBtn } from '../../styles/buttons';
@@ -146,14 +147,22 @@ class UserForm extends Component {
                     show={this.state.errorModal}
                     onHide={this.modalClose}
                 />
+
+                {this.props.loading ? <Loading /> : null}
             </FormContainer>
         );
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        loading: state.auth.loading,
+    };
+};
+
 export default withRouter(
     connect(
-        null,
+        mapStateToProps,
         { registerUser }
     )(UserForm)
 );

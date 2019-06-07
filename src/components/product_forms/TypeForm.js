@@ -5,6 +5,7 @@ import { addType } from '../../store/actions/productActions';
 // Modals
 import SuccessModal from '../modals/SuccessModal';
 import ErrorModal from '../modals/ErrorModal';
+import Loading from '../modals/Loading';
 
 // Style
 import { SaveBtn } from '../../styles/buttons';
@@ -65,35 +66,45 @@ class TypeForm extends Component {
 
     render() {
         return (
-            <FormContainer>
-                <Form onSubmit={this.submitHandler}>
-                    <Form.Label htmlFor="name">Name</Form.Label>
-                    <Form.Control
-                        type="string"
-                        name="name"
-                        onChange={this.changeHandler}
+            <>
+                <FormContainer>
+                    <Form onSubmit={this.submitHandler}>
+                        <Form.Label htmlFor="name">Name</Form.Label>
+                        <Form.Control
+                            type="string"
+                            name="name"
+                            onChange={this.changeHandler}
+                        />
+
+                        <div className="d-flex justify-content-end mt-4">
+                            <SaveBtn>Save</SaveBtn>
+                        </div>
+                    </Form>
+
+                    <SuccessModal
+                        show={this.state.successModal}
+                        onHide={this.modalClose}
                     />
 
-                    <div className="d-flex justify-content-end mt-4">
-                        <SaveBtn>Save</SaveBtn>
-                    </div>
-                </Form>
+                    <ErrorModal
+                        show={this.state.errorModal}
+                        onHide={this.modalClose}
+                    />
+                </FormContainer>
 
-                <SuccessModal
-                    show={this.state.successModal}
-                    onHide={this.modalClose}
-                />
-
-                <ErrorModal
-                    show={this.state.errorModal}
-                    onHide={this.modalClose}
-                />
-            </FormContainer>
+                {this.props.loading ? <Loading /> : null}
+            </>
         );
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        loading: state.products.loading,
+    };
+};
+
 export default connect(
-    null,
+    mapStateToProps,
     { addType }
 )(TypeForm);
