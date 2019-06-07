@@ -64,8 +64,8 @@ class Checkout extends Component {
     };
 
     render() {
-        const { tax, subtotal, user } = this.props;
-        const amount = subtotal + tax;
+        const { tax, subtotal, user, delivery } = this.props;
+        const amount = subtotal + tax + delivery;
 
         return (
             <>
