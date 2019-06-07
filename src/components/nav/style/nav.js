@@ -13,6 +13,10 @@ export const Nav = styled.nav`
         display: flex;
         justify-content: flex-end;
         align-items: center;
+
+        .cart {
+            position: relative;
+        }
     }
 `;
 
@@ -48,4 +52,15 @@ export const CategoryBar = styled.div`
         font-size: 22px;
         font-weight: 500;
     }
+`;
+
+export const Badge = styled.p`
+    padding: 3px 6px;
+    background: deepskyblue;
+    color: white;
+    border-radius: 100%;
+    font-size: 12px;
+    position: absolute;
+    top: -5px;
+    right: 16px;
 `;

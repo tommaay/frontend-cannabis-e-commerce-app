@@ -217,7 +217,9 @@ class ProductForm extends Component {
                         </Col>
 
                         <Col md={4}>
-                            <Form.Label htmlFor="price">Price</Form.Label>
+                            <Form.Label htmlFor="price">
+                                Price (Cents)
+                            </Form.Label>
                             <Form.Control
                                 type="number"
                                 name="price"
