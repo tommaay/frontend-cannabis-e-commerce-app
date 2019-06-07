@@ -171,9 +171,11 @@ const cartReducer = (state = initialState, action) => {
                 itemsInCart: {},
                 subtotal: 0,
                 tax: 0,
+                taxRate: 0.3,
                 delivery: 1000,
                 loading: false,
                 error: false,
+                order: null,
             };
 
         // Logout

@@ -44,7 +44,7 @@ export const CategoryBar = styled.div`
     }
 
     .active {
-        color: red;
+        color: navy;
         font-size: 22px;
         font-weight: 500;
     }

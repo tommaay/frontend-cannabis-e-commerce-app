@@ -4,14 +4,31 @@ import { connect } from 'react-redux';
 import { clearCart } from '../../store/actions/cartActions';
 import { addOrder } from '../../store/actions/orderActions';
 import StripeCheckout from 'react-stripe-checkout';
+import SuccessModal from '../modals/SuccessModal';
+import ErrorModal from '../modals/ErrorModal';
 
 class Checkout extends Component {
+    state = {
+        showSuccess: false,
+        showError: false,
+    };
     successPayment = () => {
-        alert('Payment Successful');
+        this.setState({
+            showSuccess: true,
+        });
     };
 
     errorPayment = () => {
-        alert('Payment Error');
+        this.setState({
+            showError: true,
+        });
+    };
+
+    modalClose = () => {
+        this.setState({
+            showSuccess: false,
+            showError: false,
+        });
     };
 
     onToken = amount => token => {
@@ -61,6 +78,15 @@ class Checkout extends Component {
                     currency="USD"
                     stripeKey="pk_test_yofUtOZ6uXrNHRMIdOFa7qBI0061om15Mw"
                     label="Checkout"
+                />
+
+                <SuccessModal
+                    show={this.state.showSuccess}
+                    onHide={this.modalClose}
+                />
+                <ErrorModal
+                    show={this.state.showError}
+                    onHide={this.modalClose}
                 />
             </>
         );

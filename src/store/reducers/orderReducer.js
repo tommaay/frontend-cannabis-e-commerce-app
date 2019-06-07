@@ -17,7 +17,6 @@ const initialState = {
     loading: false,
     error: null,
     order: {},
-    modal: true,
 };
 
 const orderReducer = (state = initialState, action) => {
@@ -73,7 +72,6 @@ const orderReducer = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 order: action.payload,
-                modal: true,
             };
         case SET_ORDER_FAIL:
             return {
@@ -89,7 +87,6 @@ const orderReducer = (state = initialState, action) => {
                 loading: false,
                 error: null,
                 order: {},
-                modal: true,
             };
 
         default:
