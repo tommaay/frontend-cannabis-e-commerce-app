@@ -33,7 +33,6 @@ class TypeForm extends Component {
 
     modalClose = () => {
         this.setState({
-            modalShow: false,
             successModal: false,
             errorModal: false,
         });
@@ -41,7 +40,6 @@ class TypeForm extends Component {
 
     successModalOn = () => {
         this.setState({
-            modalShow: false,
             successModal: true,
             errorModal: false,
         });

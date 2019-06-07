@@ -96,7 +96,17 @@ export const TotalContainer = styled.div`
             border-radius: 50px !important;
             letter-spacing: 2px !important;
             cursor: pointer !important;
-            
+            transition: 0.2s !important;
+
+            &:hover {
+                transform: translateY(-3px) !important;
+                box-shadow: 0 0 10px -5px black !important;
+            }
+
+            &:active {
+                transform: translateY(0) !important;
+            }
+
             span {
                 background-image: none !important;
                 background: none !important;
@@ -114,6 +124,6 @@ export const TotalContainer = styled.div`
                 border: none !important;
                 text-decoration: none !important;
             }
-        }          
+        }
     }
 `;

@@ -14,12 +14,17 @@ const Dashboard = props => {
                 {categories.map(category => {
                     const name = category.name;
                     const filteredProducts = getAllByCategory(products, name);
+                    const url = name
+                        .toLowerCase()
+                        .split(' ')
+                        .join('-');
 
                     return (
                         <Carousel
                             products={filteredProducts}
                             category={category}
                             key={category.id}
+                            url={url}
                         />
                     );
                 })}

@@ -1,6 +1,15 @@
 import styled from 'styled-components';
 
 export const CarouselContainer = styled.div`
+    .justify {
+        display: flex;
+        align-items: center;
+
+        h2 {
+            margin-right: 20px;
+        }
+    }
+
     .category-name {
         margin-bottom: 10px;
         font-weight: 700;

@@ -34,14 +34,12 @@ class ProductForm extends Component {
             inventory: null,
         },
         file: null,
-        modalShow: false,
         successModal: false,
         errorModal: false,
     };
 
     modalClose = () => {
         this.setState({
-            modalShow: false,
             successModal: false,
             errorModal: false,
         });
@@ -49,7 +47,6 @@ class ProductForm extends Component {
 
     successModalOn = () => {
         this.setState({
-            modalShow: false,
             successModal: true,
             errorModal: false,
         });
@@ -57,7 +54,6 @@ class ProductForm extends Component {
 
     errorModalOn = () => {
         this.setState({
-            modalShow: false,
             successModal: false,
             errorModal: true,
         });

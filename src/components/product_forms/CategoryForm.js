@@ -19,7 +19,6 @@ class CategoryForm extends Component {
             name: '',
             description: '',
         },
-        modalShow: false,
         successModal: false,
         errorModal: false,
     };
@@ -35,7 +34,6 @@ class CategoryForm extends Component {
 
     modalClose = () => {
         this.setState({
-            modalShow: false,
             successModal: false,
             errorModal: false,
         });
@@ -43,7 +41,6 @@ class CategoryForm extends Component {
 
     successModalOn = () => {
         this.setState({
-            modalShow: false,
             successModal: true,
             errorModal: false,
         });
@@ -51,7 +48,6 @@ class CategoryForm extends Component {
 
     errorModalOn = () => {
         this.setState({
-            modalShow: false,
             successModal: false,
             errorModal: true,
         });

@@ -8,6 +8,11 @@ export const Card = styled.div`
     margin: 5px 18px;
     text-align: center;
     background-color: white;
+    transition: 0.2s;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
 
     .image {
         background: rgb(236, 233, 228);
