@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { addProduct } from '../../store/actions/productActions';
+import { addProduct, getProducts } from '../../store/actions/productActions';
 
 // Modals
 import SuccessModal from '../modals/SuccessModal';
@@ -95,12 +95,10 @@ class ProductForm extends Component {
                 fd
             );
 
-            console.log('image', res.data);
-
             this.setState({
                 product: {
-                    ...this.state.prdouct,
-                    image: res.data.image,
+                    ...this.state.product,
+                    image: res.data,
                 },
             });
         } catch (err) {
@@ -111,20 +109,24 @@ class ProductForm extends Component {
     submitHandler = async e => {
         e.preventDefault();
 
-        await this.uploadImg();
+        try {
+            await this.uploadImg();
 
-        const id = await this.props.addProduct(this.state.product);
+            const id = await this.props.addProduct(this.state.product);
 
-        const spec = {
-            ...this.state.spec,
-            product_id: id,
-        };
+            const spec = {
+                ...this.state.spec,
+                product_id: id,
+            };
 
-        await axios.post(`https://flower-co.herokuapp.com/api/specs`, spec);
+            await axios.post(`https://flower-co.herokuapp.com/api/specs`, spec);
 
-        if (id) {
-            this.successModalOn();
-        } else {
+            await this.props.getProducts();
+
+            if (id) {
+                this.successModalOn();
+            }
+        } catch (err) {
             this.errorModalOn();
         }
     };
@@ -267,5 +269,5 @@ const mapStateToProps = state => {
 
 export default connect(
     mapStateToProps,
-    { addProduct }
+    { addProduct, getProducts }
 )(ProductForm);

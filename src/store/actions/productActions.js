@@ -130,11 +130,7 @@ export const addProduct = info => async dispatch => {
             info
         );
 
-        console.log('addProduct', res.data);
-
         const productId = res.data.id;
-
-        console.log('productId', productId);
 
         dispatch({ type: ADD_PRODUCT_SUCCESS, payload: res.data });
 

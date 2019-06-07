@@ -120,7 +120,6 @@ const productReducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                products: [...state.products, action.payload],
             };
         case ADD_PRODUCT_FAIL:
             return {
