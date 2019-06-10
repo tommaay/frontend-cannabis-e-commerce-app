@@ -1,6 +1,17 @@
 # Front-End-Cannabis-E-Commerce-App
 
-This is the frontend repo for a cannabis e-commerce platform. Users will be able to sign up and browse the catelog of products and purchase them with their credit cards through Stripe payments. The admins will be able to add, update and delete products as needed. 
+This is the frontend repo for a cannabis e-commerce platform. Users will be able to sign up and browse the catelog of products and purchase them with their credit cards through Stripe payments. The admins will be able to add, update and delete products as needed.
+
+## Launching the app
+
+This app is hosted on Netlify at: https://flower-co.netlify.com/
+
+To launch the app locally you will need to:
+- Clone the backend repo at https://github.com/tommaay/backend-cannabis-e-commerce-app
+- Install the dependencies by typing npm install or yarn in the terminal at the root directory
+- Run yarn server in the terminal and the server should be up and running
+- Then clone this repo and install the depencies
+- Run yarn start in the terminal and that should open the React application in your browser
 
 ## Features - Admins
 
